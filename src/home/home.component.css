@@ -1,3 +1,27 @@
-p {
-    color: #008cba;
+nav {
+    background: #f6f9fa;
+    height: 120px;
+    line-height: 120px;
+}
+
+.brand-logo {
+    color: #5F6D85;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding-left: 20px;
+    letter-spacing: .9px;
+}
+
+.brand-logo:hover {
+    color: #2ecc71;
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+}
+
+.brand-logo i {
+    line-height: 120px;
+    font-size: 30px;
+    color: #2ecc71;
 }

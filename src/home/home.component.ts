@@ -8,9 +8,13 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 })
 export class HomeComponent implements OnInit {
 
+    PageTitle: String;
 
+    constructor(){
+        
+    }
 
     ngOnInit() {
-
+        this.PageTitle = 'Cryptocurrency Stock Market';
     }
 }
