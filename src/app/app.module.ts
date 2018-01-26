@@ -2,9 +2,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+// NgStickyDirective
+import { NgStickyDirective } from 'ng-sticky';
 
 // routing
 import { routing } from './app-routing';
+
+
 
 // components
 import { AppComponent } from './app.component';
@@ -17,7 +21,8 @@ import { CurrencyListComponent } from '../currency-list/currency-list.component'
     AppComponent,
     HomeComponent,
     FavouritesComponent,
-    CurrencyListComponent
+    CurrencyListComponent,
+    NgStickyDirective
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
+declare var $: any;
+
 @Component({
     selector: 'app-currency-list',
     templateUrl: './currency-list.component.html',
@@ -8,7 +10,8 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 })
 export class CurrencyListComponent implements OnInit {
 
-    ngOnInit(){
+
+    ngOnInit() {
 
     }
 }

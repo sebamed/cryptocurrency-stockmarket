@@ -1,7 +1,14 @@
-.list-header {
+#list-header {
     border-top: 1px solid #D6E2EB;
     border-bottom: 1px solid #D6E2EB;
     background: #ECF1F4;
+    width:100%;
+    z-index:100;
+}
+
+#list-header.floating {
+    position: fixed;
+    top: 0;
 }
 
 .wrapper {
@@ -22,4 +29,6 @@
 .row-head::after {
     clear: none;
 }
+
+
 
