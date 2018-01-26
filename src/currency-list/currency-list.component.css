@@ -1,0 +1,25 @@
+.list-header {
+    border-top: 1px solid #D6E2EB;
+    border-bottom: 1px solid #D6E2EB;
+    background: #ECF1F4;
+}
+
+.wrapper {
+    margin: auto;
+    width: 42%;
+    text-align: center;
+}
+
+.wrapper h5 {
+    color: #5F6D85;
+    font-weight: bolder;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.6em;
+    margin: 5px 0 0 0;
+}
+
+.row-head::after {
+    clear: none;
+}
+
