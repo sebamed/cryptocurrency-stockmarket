@@ -1,16 +1,30 @@
+<!-- navigation -->
 <nav>
     <div class="nav-wrapper">
-        <a href="#" class="brand-logo"><i class="fa fa-money"></i>{{ PageTitle }}</a>
+        <a href="#" class="brand-logo">{{ PageTitle }}</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li>
-                <a href="#.html"><i class="fa fa-search"></i></a>
+                <a routerLink="/" class="waves-effect waves-light btn">Currency list
+                    <i class="fa fa-btc left"></i>
+                </a>
             </li>
             <li>
-                <a href="#.html"><i class="fa fa-search"></i></a>
+                <a routerLink="/favourites" class="waves-effect waves-light btn">Favourites
+                    <i class="fa fa-thumb-tack left"></i>
+                </a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-search"></i></a>
+                <a class="waves-effect waves-light btn">Top
+                    <i class="fa fa-star left"></i>
+                </a>
+            </li>
+            <li>
+                <a class="waves-effect waves-light btn">Refresh
+                    <i class="fa fa-refresh left"></i>
+                </a>
             </li>
         </ul>
     </div>
 </nav>
+<!-- end of navigation -->
+<router-outlet></router-outlet>

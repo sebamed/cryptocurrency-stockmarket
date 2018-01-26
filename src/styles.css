@@ -1,6 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+/*
+Color palette:
+- green:
+    #2ecc71 - main
+    #29b765 - hover
+    #24a35a - focus
+*/
+
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
 html {
     font-family: 'Montserrat', sans-serif;
+}
+
+.btn {
+    border-radius: 18px;
+    font-weight: bolder;
+    letter-spacing: 1.6px;
+    text-transform: none;
+    background: #2ecc71;
+    font-size: 0.8em;
+    padding-left: 18px;
+    padding-right: 18px;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    background: #29b765;
+}
+
+.btn:focus {
+    background: #24a35a;
 }

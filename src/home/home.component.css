@@ -4,6 +4,14 @@ nav {
     line-height: 120px;
 }
 
+#nav-mobile li {
+    padding: 0 10px;
+}
+
+.nav-wrapper i {
+    line-height: 36px;
+}
+
 .brand-logo {
     color: #5F6D85;
     font-weight: bold;
@@ -18,10 +26,4 @@ nav {
     -webkit-transition: all .2s ease-in-out;
     -o-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
-}
-
-.brand-logo i {
-    line-height: 120px;
-    font-size: 30px;
-    color: #2ecc71;
 }
