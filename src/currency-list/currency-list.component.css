@@ -11,6 +11,16 @@
     top: 0;
 }
 
+#list-row {
+    border-bottom: 1px solid #D6E2EB;
+    background: #fff;
+    width: 100%;
+}
+
+#list-row:hover {
+    background: #f1f1f1;
+}
+
 .wrapper {
     margin: auto;
     width: 42%;
@@ -18,12 +28,52 @@
 }
 
 .wrapper h5 {
-    color: #5F6D85;
+    color: #93969e;
     font-weight: bolder;
     letter-spacing: 1px;
     text-transform: uppercase;
     font-size: 0.6em;
     margin: 5px 0 0 0;
+}
+
+.list-row {
+    padding: 15px 0;
+    cursor: pointer;
+}
+
+.coin-name {
+    font-size: 0.8em;
+    color: #8b95a5;
+    font-weight: lighter;
+}
+
+.coin-name h5 {
+    color: #5e5e5e;
+    text-transform: none;
+    letter-spacing: 1.2px;
+    font-weight: 500;
+    font-size: 1em;
+    line-height: 9px; 
+}
+
+.number {
+    float: left;
+    height: 100%;
+}
+
+.icon {
+    float: left;
+    height: 100%;
+    margin-left: 20px;
+}
+
+.coin-price h5 {
+    color: #5e5e5e;
+    text-transform: none;
+    letter-spacing: 1.2px;
+    font-weight: 500;
+    font-size: .8em;
+    line-height: 9px; 
 }
 
 .row-head::after {

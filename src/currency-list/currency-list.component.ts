@@ -10,8 +10,44 @@ declare var $: any;
 })
 export class CurrencyListComponent implements OnInit {
 
+    test: any[] = [];
 
     ngOnInit() {
-
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
+        this.test.push(1);
     }
 }
