@@ -1,6 +1,9 @@
 # Greetings
 - [ng-sticky](https://github.com/jonasmedeiros/ng-sticky) - Angular 4 library for making sticky elements
 
+# Summary
+- Coinranking.com copy with added elements built in Angular 4 with MaterializeCSS.
+
 # CryptocurrencyStockmarket
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
