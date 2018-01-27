@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
-
-declare var $: any;
+import { CoinService } from '../services/coins.service';
 
 @Component({
     selector: 'app-currency-list',
@@ -10,44 +9,17 @@ declare var $: any;
 })
 export class CurrencyListComponent implements OnInit {
 
-    test: any[] = [];
+    coins: any;
+    objectKeys = Object.keys;
+
+    constructor(private _coins: CoinService) {
+
+    }
 
     ngOnInit() {
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
-        this.test.push(1);
+       this._coins.getCoins().subscribe(res => {
+           this.coins = res;
+           //console.log(res);
+       });
     }
 }

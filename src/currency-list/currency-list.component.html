@@ -19,18 +19,18 @@
 </div>
 
 <!-- table content -->
-<div id="list-row" *ngFor="let a of test">
+<div id="list-row" *ngFor="let key of coins.RAW | ObjKeys; let i = index">
     <div class="wrapper list-row">
         <div class="row-head row">
             <div class="col s3 coin-name">
-                <div class="number">1</div>
+                <div class="number">{{ i + 1 }}.</div>
                 <div class="icon">
                     <i class="fa fa-btc"></i>
                 </div>
-                <h5>Currency</h5>
+                <h5>{{ coins.RAW[key]["USD"]["MKTCAP"] }}</h5>
             </div>
             <div class="col s3 coin-price">
-                <h5>3.123,00</h5>
+                <h5>{{ key }} $</h5>
             </div>
             <div class="col s3 coin-price">
                 <h5>33.123.123,00</h5>
