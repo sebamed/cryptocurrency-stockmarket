@@ -1,5 +1,6 @@
 # Greetings
 - [ng-sticky](https://github.com/jonasmedeiros/ng-sticky) - Angular 4 library for making sticky elements
+- [REST API](https://www.cryptocompare.com/api/) - free cryptocurrency API - CryptoCompare
 
 # Summary
 - Coinranking.com copy with added elements built in Angular 4 with MaterializeCSS.
