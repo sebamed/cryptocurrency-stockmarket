@@ -29,6 +29,12 @@ export class CurrencyListComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log(this.getTimeFromDate(1514505600));
+        console.log(this.getTimeFromDate(1514592000));
+        console.log(this.getTimeFromDate(1514678400));
+        console.log(this.getTimeFromDate(1517097600));
+        
+        
         this.loaded = false;
         this.scrolled = false;
         this._coins.getCoins().subscribe(res => {
@@ -79,11 +85,24 @@ export class CurrencyListComponent implements OnInit {
         });
     }
 
-    checkPercent(perc: number){
-        if(perc >= 0){
+    checkPercent(perc: number) {
+        if (perc >= 0) {
             return true;
         } else {
             return false;
         }
+    }
+
+    pad(num) {
+        return ("0" + num).slice(-2);
+    }
+
+    getTimeFromDate(timestamp) {
+        let date = new Date(timestamp * 1000);
+        let hours = date.getHours();
+        
+        let minutes = date.getMinutes();
+        let seconds = date.getSeconds();
+        return date.getDay() + "/" + date.getMonth() + "/" + this.pad(date.getFullYear()) + "/" + this.pad(hours) + ":" + this.pad(minutes) + ":" + this.pad(seconds)
     }
 }
