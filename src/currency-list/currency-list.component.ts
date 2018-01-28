@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';
 
-declare var $:any;
+declare var $: any;
 
 @Component({
     selector: 'app-currency-list',
@@ -38,31 +38,44 @@ export class CurrencyListComponent implements OnInit {
             error => {
                 console.log(error);
             },
-            () => {       
+            () => {
                 this.setTimer();
                 console.log("loadovano");
             }
         );
         $('.fixed-action-btn').hide();
-        $(window).scroll(function() {
-            if($(window).scrollTop() > 100){
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 100) {
                 $('.fixed-action-btn').fadeIn();
             } else {
                 $('.fixed-action-btn').fadeOut();
             }
         });
+        this.refreshData();
     }
 
-    setTimer(){
+    setTimer() {
         this.timer = Observable.timer(500);
-        this.subscription = this.timer.subscribe(() =>   {
+        this.subscription = this.timer.subscribe(() => {
             this.loaded = true;
         });
     }
 
-    scrollToTop(){
+    scrollToTop() {
         $('html, body').animate({
             scrollTop: 0
         }, 800);
+    }
+
+    refreshData() {
+        this.timer = Observable.timer(30000); // 30 sekundi
+        this.subscription = this.timer.subscribe(() => {
+            console.log("Refresovano");
+            this._coins.getCoins().subscribe(res => {
+                this.coins = res;
+                //console.log(res);
+            });
+            this.refreshData();
+        });
     }
 }

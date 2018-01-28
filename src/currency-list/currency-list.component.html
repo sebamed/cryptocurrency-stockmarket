@@ -44,7 +44,7 @@
                         <h5>{{ coins.RAW[key]["USD"]["MKTCAP"] | currency:'USD':'symbol-narrow':'1.2-4' }}</h5>
                     </div>
                     <div class="col s3">
-                        <h5>Last 24h</h5>
+                        <h5>{{ coins.RAW[key]["USD"]["CHANGEPCT24HOUR"] | percent:'2.2' }}</h5>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
     </div>
 </div>
 <div class="fixed-action-btn" (click)="scrollToTop()">
-    <a class="btn-floating btn-large">
-        <i class="fa fa-caret-up"></i>
+    <a class="btn-floating btn-small">
+        <i class="fa fa-arrow-up"></i>
     </a>
 </div>
