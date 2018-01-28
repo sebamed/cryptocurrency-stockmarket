@@ -23,6 +23,22 @@ export class CoinService {
         'TRX',
         'ICX',
         'QTUM',
+        'LSK',
+        'XRB',
+        'PPT',
+        'USDT',
+        'OMG',
+        'STEEM',
+        'ZEC',
+        'STRAT',
+        'SC',
+        'BCN',
+        'BTS',
+        'BNB',
+        'XVG',
+        'KCS',
+        'SNT',
+        'ARDR',
     ];
 
     // rest api

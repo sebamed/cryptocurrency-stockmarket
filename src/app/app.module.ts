@@ -20,6 +20,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from '../home/home.component';
 import { FavouritesComponent } from '../favourites/favourites.component';
 import { CurrencyListComponent } from '../currency-list/currency-list.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { CurrencyListComponent } from '../currency-list/currency-list.component'
     HomeComponent,
     FavouritesComponent,
     CurrencyListComponent,
+    FooterComponent,
     NgStickyDirective,
     KeysPipe
   ],

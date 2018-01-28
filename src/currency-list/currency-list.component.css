@@ -76,6 +76,31 @@
     line-height: 9px; 
 }
 
+.show {
+    opacity: 1 !important;
+}
+.step {
+    opacity: 0;
+}
+
+.progress {
+    height: 2px;
+    background: #ECF1F4;
+    width: 220px;
+}
+
+.progress .indeterminate {
+    background-color: #2ecc71;
+}
+
+.btn-floating {
+    background: #2ecc71;
+}
+
+.btn-floating:hover {
+    background: #29b765;
+}
+
 .row-head::after {
     clear: none;
 }

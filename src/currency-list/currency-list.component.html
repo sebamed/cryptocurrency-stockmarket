@@ -18,32 +18,41 @@
     </div>
 </div>
 
-<div class="progress" *ngIf="!loaded">
-    <div class="indeterminate"></div>
+<div class="step" [class.show]="!loaded" style="position: absolute; left: 50%; top: 50%;">
+    <div class="progress" style="position: relative; left: -50%;">
+        <div class="indeterminate"></div>
+    </div>
 </div>
 
 <!-- table content -->
-<div class="data" *ngIf="loaded">
-    <div id="list-row" *ngFor="let key of coins.RAW | ObjKeys; let i = index">
-        <div class="wrapper list-row">
-            <div class="row-head row">
-                <div class="col s3 coin-name">
-                    <div class="number">{{ i + 1 }}.</div>
-                    <div class="icon">
-                        <i class="fa fa-btc"></i>
+<div class="hidden-data" *ngIf="loaded">
+    <div class="data step" [class.show]="loaded">
+        <div id="list-row" *ngFor="let key of coins.RAW | ObjKeys; let i = index">
+            <div class="wrapper list-row">
+                <div class="row-head row">
+                    <div class="col s3 coin-name">
+                        <div class="number">{{ i + 1 }}.</div>
+                        <div class="icon">
+                            <i class="fa fa-btc"></i>
+                        </div>
+                        <h5>{{ key }}</h5>
                     </div>
-                    <h5>{{ key }}</h5>
-                </div>
-                <div class="col s3 coin-price">
-                    <h5>{{ coins.RAW[key]["USD"]["PRICE"] | currency:'USD':'symbol-narrow':'1.2-4' }}</h5>
-                </div>
-                <div class="col s3 coin-price">
-                    <h5>{{ coins.RAW[key]["USD"]["MKTCAP"] | currency:'USD':'symbol-narrow':'1.2-4' }}</h5>
-                </div>
-                <div class="col s3">
-                    <h5>Last 24h</h5>
+                    <div class="col s3 coin-price">
+                        <h5>{{ coins.RAW[key]["USD"]["PRICE"] | currency:'USD':'symbol-narrow':'1.2-4' }}</h5>
+                    </div>
+                    <div class="col s3 coin-price">
+                        <h5>{{ coins.RAW[key]["USD"]["MKTCAP"] | currency:'USD':'symbol-narrow':'1.2-4' }}</h5>
+                    </div>
+                    <div class="col s3">
+                        <h5>Last 24h</h5>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<div class="fixed-action-btn" (click)="scrollToTop()">
+    <a class="btn-floating btn-large">
+        <i class="fa fa-caret-up"></i>
+    </a>
 </div>
