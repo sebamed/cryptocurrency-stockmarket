@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 // NgStickyDirective
 import { NgStickyDirective } from 'ng-sticky';
 
@@ -11,6 +12,7 @@ import { routing } from './app-routing';
 
 // services
 import { CoinService } from '../services/coins.service';
+import { RandomText } from '../services/random-text.service';
 
 // pipes 
 import { KeysPipe } from '../pipes/keys.pipe';
@@ -36,9 +38,10 @@ import { FooterComponent } from '../footer/footer.component';
     BrowserModule,
     RouterModule,
     HttpModule,
+    FormsModule,
     routing
   ],
-  providers: [CoinService],
+  providers: [CoinService, RandomText],
   bootstrap: [HomeComponent]
 })
 export class AppModule { }

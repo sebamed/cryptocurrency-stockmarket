@@ -4,6 +4,7 @@ import { CoinService } from '../services/coins.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';
+import { RandomText } from '../services/random-text.service';
 
 declare var $: any;
 
@@ -22,7 +23,6 @@ export class CurrencyListComponent implements OnInit {
     timer: Observable<any>;
 
     scrolled: boolean;
-
 
     constructor(private _coins: CoinService) {
 

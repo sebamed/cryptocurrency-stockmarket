@@ -16,8 +16,28 @@ nav {
     color: #5F6D85;
     font-weight: bold;
     font-size: 1.2em;
-    padding-left: 20px;
+    padding-left: 30px;
     letter-spacing: .9px;
+    cursor: default;
+}
+
+.brand-logo p {
+    display: inline;
+    font-size: 0.7em;
+    letter-spacing: 0;
+    font-weight: 100;
+    color: #b8bcbe;
+}
+
+.brand-logo i {
+    color: #D6E2EB;
+    margin-left: 20px;
+    float: none;
+    font-size: 0.6em;
+}
+
+.brand-logo i:hover {
+    color: #5F6D85;
 }
 
 .brand-logo:hover {

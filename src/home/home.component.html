@@ -1,7 +1,10 @@
 <!-- navigation -->
 <nav>
     <div class="nav-wrapper">
-        <a href="#" class="brand-logo">{{ PageTitle }}</a>
+        <div class="brand-logo" ngDefaultControl [(ngModel)]="randomText">{{ PageTitle }}
+            <i class="fa fa-bolt"></i>
+            <p>{{ randomText }}</p>
+        </div>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li>
                 <a routerLink="/" class="waves-effect waves-light btn">Currency list
