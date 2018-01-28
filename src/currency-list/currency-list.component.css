@@ -15,6 +15,7 @@
     border-bottom: 1px solid #D6E2EB;
     background: #fff;
     width: 100%;
+    outline: none;
 }
 
 #list-row:hover {

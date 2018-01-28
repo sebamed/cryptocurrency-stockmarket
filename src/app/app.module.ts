@@ -23,6 +23,7 @@ import { HomeComponent } from '../home/home.component';
 import { FavouritesComponent } from '../favourites/favourites.component';
 import { CurrencyListComponent } from '../currency-list/currency-list.component';
 import { FooterComponent } from '../footer/footer.component';
+import { CoinInfoComponent } from '../coin-info/coin-info.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { FooterComponent } from '../footer/footer.component';
     CurrencyListComponent,
     FooterComponent,
     NgStickyDirective,
+    CoinInfoComponent,
     KeysPipe
   ],
   imports: [
