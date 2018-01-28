@@ -8,8 +8,21 @@ export class CoinService {
     // coins list
     coinsList: string[] = [
         'BTC',
+        'ETH',
+        'XRP',
         'IOT',
-        'ETH'
+        'BCH',
+        'ADA',
+        'XLM',
+        'LTC',
+        'NEO',
+        'EOS',
+        'XEM',
+        'MIOTA',
+        'XMR',
+        'TRX',
+        'ICX',
+        'QTUM',
     ];
 
     // rest api
@@ -19,7 +32,7 @@ export class CoinService {
 
     constructor(private _http: Http){
         //this.coinsListUrl = "https://min-api.cryptocompare.com/data/pricemulti?fsyms=" + this.getCoinsNames() + "&tsyms=USD";
-        this.coinsListUrl = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH,DASH&tsyms=USD";
+        this.coinsListUrl = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" + this.getCoinsNames() + "&tsyms=USD";
     }
 
     getCoins(){

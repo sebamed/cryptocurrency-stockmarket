@@ -12,14 +12,25 @@ export class CurrencyListComponent implements OnInit {
     coins: any;
     objectKeys = Object.keys;
 
+    loaded: boolean;
+
     constructor(private _coins: CoinService) {
 
     }
 
     ngOnInit() {
+        this.loaded = false;
        this._coins.getCoins().subscribe(res => {
            this.coins = res;
            //console.log(res);
-       });
+       },
+       error => {
+           console.log(error);
+       },
+       () => {
+           this.loaded = true;
+           console.log("loadovano");
+       }
+    );
     }
 }
