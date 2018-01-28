@@ -18,6 +18,8 @@ export class CurrencyListComponent implements OnInit {
     coins: any;
     objectKeys = Object.keys;
 
+    coinsHistory: any[] = [];
+
     loaded: boolean;
     subscription: Subscription;
     timer: Observable<any>;
@@ -103,6 +105,18 @@ export class CurrencyListComponent implements OnInit {
         
         let minutes = date.getMinutes();
         let seconds = date.getSeconds();
-        return date.getDay() + "/" + date.getMonth() + "/" + this.pad(date.getFullYear()) + "/" + this.pad(hours) + ":" + this.pad(minutes) + ":" + this.pad(seconds)
+        return date.getDay() + "/" + this.pad(date.getMonth()) + "/" + this.pad(date.getFullYear()) + "/" + this.pad(hours) + ":" + this.pad(minutes) + ":" + this.pad(seconds)
+    }
+
+    // ovo kopiraj tamo sabane
+    getCoinsHistory(alias: string){
+        this._coins.getCoinsPriceHistory(alias).subscribe(res => {
+            this.coinsHistory = res.Data;
+
+        },
+        error => console.log(error),
+        () => {
+            console.log("uzeto: " + this.coinsHistory[1].time);
+        });
     }
 }
