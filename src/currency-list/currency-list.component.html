@@ -38,13 +38,22 @@
                         <h5>{{ key }}</h5>
                     </div>
                     <div class="col s3 coin-price">
-                        <h5>{{ coins.RAW[key]["USD"]["PRICE"] | currency:'USD':'symbol-narrow':'1.2-4' }}</h5>
+                        <span class="currency">$</span>
+                        <h5>{{ coins.RAW[key]["USD"]["PRICE"] | number:'1.2-4' }}</h5>
                     </div>
                     <div class="col s3 coin-price">
-                        <h5>{{ coins.RAW[key]["USD"]["MKTCAP"] | currency:'USD':'symbol-narrow':'1.2-4' }}</h5>
+                        <span class="currency">$</span>
+                        <h5>{{ coins.RAW[key]["USD"]["MKTCAP"] | number:'1.2-4' }}</h5>
                     </div>
-                    <div class="col s3">
-                        <h5>{{ coins.RAW[key]["USD"]["CHANGEPCT24HOUR"] | percent:'2.2' }}</h5>
+                    <div class="col s3 coin-perc">
+                        <div class="plus" *ngIf="checkPercent(coins.RAW[key]['USD']['CHANGEPCT24HOUR'])">
+                            <i class="fa fa-caret-up"></i>
+                            <h5>{{ coins.RAW[key]["USD"]["CHANGEPCT24HOUR"] | number:'1.2' }}%</h5>
+                        </div>
+                        <div class="minus" *ngIf="!checkPercent(coins.RAW[key]['USD']['CHANGEPCT24HOUR'])">
+                            <i class="fa fa-caret-down"></i>
+                            <h5>{{ coins.RAW[key]["USD"]["CHANGEPCT24HOUR"] | number:'1.2' }}%</h5>
+                        </div>
                     </div>
                 </div>
             </div>

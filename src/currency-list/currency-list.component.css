@@ -2,8 +2,8 @@
     border-top: 1px solid #D6E2EB;
     border-bottom: 1px solid #D6E2EB;
     background: #ECF1F4;
-    width:100%;
-    z-index:100;
+    width: 100%;
+    z-index: 100;
 }
 
 #list-header.floating {
@@ -43,17 +43,15 @@
 
 .coin-name {
     font-size: 0.8em;
-    color: #8b95a5;
     font-weight: lighter;
 }
 
 .coin-name h5 {
-    color: #444444;
+    color: #8f8f8f;
     text-transform: none;
     letter-spacing: 1.2px;
-    font-weight: 500;
-    font-size: 1em;
-    line-height: 9px; 
+    font-weight: bold;
+    font-size: 0.9em;
 }
 
 .number {
@@ -68,19 +66,25 @@
 }
 
 .coin-price h5 {
-    color: #5e5e5e;
+    color: #8f8f8f;
     text-transform: none;
     letter-spacing: 1.2px;
-    font-weight: 500;
-    font-size: .8em;
-    line-height: 9px; 
+    font-weight: bold;
+    font-size: .65em;
+    display: inline;
 }
 
 .show {
     opacity: 1 !important;
 }
+
 .step {
     opacity: 0;
+}
+
+.currency {
+    color: #93969E;
+    font-size: 0.7em;
 }
 
 .progress {
@@ -101,9 +105,26 @@
     background: #29b765;
 }
 
+.coin-perc .plus h5 {
+    color: #29b765;
+    display: inline;
+}
+
+.coin-perc .minus h5 {
+    color: #e74c3c;
+    display: inline;
+}
+
+.coin-perc .plus i {
+    color: #29b765;
+    font-size: 0.6em;
+}
+
+.coin-perc .minus i {
+    color: #e74c3c;
+    font-size: 0.6em;
+}
+
 .row-head::after {
     clear: none;
 }
-
-
-

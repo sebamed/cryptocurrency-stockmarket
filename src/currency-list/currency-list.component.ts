@@ -78,4 +78,12 @@ export class CurrencyListComponent implements OnInit {
             this.refreshData();
         });
     }
+
+    checkPercent(perc: number){
+        if(perc >= 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
