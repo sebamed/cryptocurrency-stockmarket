@@ -1,6 +1,7 @@
 # Greetings
 - [ng-sticky](https://github.com/jonasmedeiros/ng-sticky) - Angular 4 library for making sticky elements
 - [ng-charts](https://github.com/valor-software/ng2-charts) - Angular library for integrating Chart.js
+- [cryptocoins-icons](https://github.com/allienworks/cryptocoins) - Webfont with cryptocoins icons
 - [REST API](https://www.cryptocompare.com/api/) - free cryptocurrency API - CryptoCompare
 
 
