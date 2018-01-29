@@ -6,6 +6,8 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 // NgStickyDirective
 import { NgStickyDirective } from 'ng-sticky';
+// NgCharts
+import { ChartsModule } from 'ng2-charts';
 
 // routing
 import { routing } from './app-routing';
@@ -41,6 +43,7 @@ import { CoinInfoComponent } from '../coin-info/coin-info.component';
     RouterModule,
     HttpModule,
     FormsModule,
+    ChartsModule,
     routing
   ],
   providers: [CoinService, RandomText],

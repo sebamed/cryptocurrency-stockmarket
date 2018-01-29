@@ -1,1 +1,14 @@
-radi coin
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <div style="display: block;">
+                <canvas baseChart width="400" height="400" 
+                [datasets]="coinChartData" 
+                [labels]="coinChartLabels" 
+                [options]="coinChartOptions"               
+                [chartType]="coinChartType" 
+                (chartClick)="chartClicked($event)"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
