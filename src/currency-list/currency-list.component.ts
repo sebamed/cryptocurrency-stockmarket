@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { OnInit, OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { CoinService } from '../services/coins.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
@@ -13,7 +13,7 @@ declare var $: any;
     templateUrl: './currency-list.component.html',
     styleUrls: ['./currency-list.component.css']
 })
-export class CurrencyListComponent implements OnInit {
+export class CurrencyListComponent implements OnInit, OnDestroy {
 
     coins: any;
     objectKeys = Object.keys;
@@ -21,7 +21,8 @@ export class CurrencyListComponent implements OnInit {
     coinsHistory: any[] = [];
 
     loaded: boolean;
-    subscription: Subscription;
+    subscriptionTimer: Subscription;
+    subscriptionoData: Subscription;
     timer: Observable<any>;
 
     scrolled: boolean;
@@ -30,16 +31,28 @@ export class CurrencyListComponent implements OnInit {
 
     }
 
-    ngOnInit() {
-        console.log(this.getTimeFromDate(1514505600));
-        console.log(this.getTimeFromDate(1514592000));
-        console.log(this.getTimeFromDate(1514678400));
-        console.log(this.getTimeFromDate(1517097600));
-        
-        
+    ngOnInit() {        
         this.loaded = false;
         this.scrolled = false;
-        this._coins.getCoins().subscribe(res => {
+        this.getCoinData();
+        this.refreshData(30000);
+        $('.fixed-action-btn').hide();
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 100) {
+                $('.fixed-action-btn').fadeIn();
+            } else {
+                $('.fixed-action-btn').fadeOut();
+            }
+        });
+    }
+
+    ngOnDestroy(){
+        this.subscriptionTimer.unsubscribe();
+        this.subscriptionoData.unsubscribe();
+    }
+
+    getCoinData(){
+        this.subscriptionoData = this._coins.getCoins().subscribe(res => {
             this.coins = res;
             //console.log(res);
         },
@@ -51,20 +64,11 @@ export class CurrencyListComponent implements OnInit {
                 console.log("loadovano");
             }
         );
-        $('.fixed-action-btn').hide();
-        $(window).scroll(function () {
-            if ($(window).scrollTop() > 100) {
-                $('.fixed-action-btn').fadeIn();
-            } else {
-                $('.fixed-action-btn').fadeOut();
-            }
-        });
-        this.refreshData();
     }
 
     setTimer() {
         this.timer = Observable.timer(500);
-        this.subscription = this.timer.subscribe(() => {
+        this.subscriptionTimer = this.timer.subscribe(() => {
             this.loaded = true;
         });
     }
@@ -75,15 +79,15 @@ export class CurrencyListComponent implements OnInit {
         }, 800);
     }
 
-    refreshData() {
-        this.timer = Observable.timer(30000); // 30 sekundi
-        this.subscription = this.timer.subscribe(() => {
+    refreshData(seconds: number) {
+        this.timer = Observable.timer(seconds); // 30 sekundi
+        this.subscriptionTimer = this.timer.subscribe(() => {
             console.log("Refresovano");
             this._coins.getCoins().subscribe(res => {
                 this.coins = res;
                 //console.log(res);
             });
-            this.refreshData();
+            this.refreshData(seconds);
         });
     }
 
@@ -95,16 +99,4 @@ export class CurrencyListComponent implements OnInit {
         }
     }
 
-    pad(num) {
-        return ("0" + num).slice(-2);
-    }
-
-    getTimeFromDate(timestamp) {
-        let date = new Date(timestamp * 1000);
-        let hours = date.getHours();
-        
-        let minutes = date.getMinutes();
-        let seconds = date.getSeconds();
-        return date.getDay() + "/" + this.pad(date.getMonth()) + "/" + this.pad(date.getFullYear()) + "/" + this.pad(hours) + ":" + this.pad(minutes) + ":" + this.pad(seconds)
-    }
 }

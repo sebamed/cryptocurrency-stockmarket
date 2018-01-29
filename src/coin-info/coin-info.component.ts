@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { OnInit, OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { CoinService } from '../services/coins.service';
 import { ActivatedRoute } from '@angular/router';
 import { Chart } from 'chart.js';
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
     templateUrl: './coin-info.component.html',
     styleUrls: ['./coin-info.component.css']
 })
-export class CoinInfoComponent implements OnInit {
+export class CoinInfoComponent implements OnInit, OnDestroy {
 
     coinAlias: string;
     private sub: any;
@@ -57,6 +57,8 @@ export class CoinInfoComponent implements OnInit {
     timer: Observable<any>;
     subscription: Subscription;
 
+    subCoins: Subscription;
+
     constructor(private _coins: CoinService,
         private _route: ActivatedRoute) {
 
@@ -70,6 +72,12 @@ export class CoinInfoComponent implements OnInit {
     ngOnInit() {
         this.getUrlParams(); // stavlja coinAlias na trenutni coin
         this.getCoinsHistory();
+    }
+
+    ngOnDestroy(){
+        this.subscription.unsubscribe();
+        this.sub.unsubscribe();
+        this.subCoins.unsubscribe();
     }
 
     initiateChart() {
@@ -87,7 +95,7 @@ export class CoinInfoComponent implements OnInit {
     }
 
     getUrlParams() {
-        this.sub = this._route.params.subscribe(params => {
+        this.subCoins = this.sub = this._route.params.subscribe(params => {
             this.coinAlias = params['alias'];
         });
         console.log(this.coinAlias);

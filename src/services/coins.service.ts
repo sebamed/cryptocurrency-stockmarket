@@ -38,6 +38,18 @@ export class CoinService {
         'BC',
         'BCH',
         'BRX',
+        'BSD',
+        'BTA',
+        'BTCD',
+        'BTM',
+        'CLOAK',
+        'DAO',
+        'DCR',
+        'DCT',
+        'DMD',
+        'DOGE',
+        'EMC',
+        'ETC',
 
     ];
 
