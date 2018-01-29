@@ -63,7 +63,8 @@ export class CoinService {
     }
 
     getCoinsPriceHistory(alias: string){
-        this.coinsPriceHistoryUrl = 'https://min-api.cryptocompare.com/data/histoday?fsym=' + alias.toUpperCase() + '&tsym=USD&limit=10';
+        // TODO: dodaj da pored aliasa prihvata koliko dana treba da prikaze
+        this.coinsPriceHistoryUrl = 'https://min-api.cryptocompare.com/data/histoday?fsym=' + alias.toUpperCase() + '&tsym=USD&limit=15';
         return this._http.get(this.coinsPriceHistoryUrl)
             .map(result => result.json());
     }

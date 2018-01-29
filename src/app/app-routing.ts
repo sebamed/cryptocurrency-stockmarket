@@ -10,6 +10,7 @@ import { CoinInfoComponent } from "../coin-info/coin-info.component";
 
 export const routes: Routes = [
     { path: '', component: CurrencyListComponent },
+    { path: 'coin', redirectTo: '', pathMatch: 'full' },
     { path: 'favourites', component: FavouritesComponent },
     { path: 'coin/:alias' , component: CoinInfoComponent }
 ];

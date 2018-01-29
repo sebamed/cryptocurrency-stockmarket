@@ -30,6 +30,24 @@ export class CoinInfoComponent implements OnInit {
         responsive: true,
         legend: {
             display: false,
+        },
+        elements: {
+            line: {
+                tension: 0
+            }
+        },
+        scales:
+        {
+            xAxes: [{
+                gridLines : {
+                    display : false
+                }
+            }],
+            yAxes: [{
+                gridLines : {
+                    display : false
+                }
+            }]
         }
     }
 
@@ -55,13 +73,17 @@ export class CoinInfoComponent implements OnInit {
     }
 
     initiateChart() {
-        this.timer = Observable.timer(1000);
+        this.timer = Observable.timer(500);
         this.subscription = this.timer.subscribe(() => {
             this.coinChartData = [
                 { data: this.coinPrices, label: this.coinAlias }
-            ];
-
-        });
+            ];   
+        },
+        error => console.log(error),
+        () => {
+            this.initiateChart();
+        }
+    );
     }
 
     getUrlParams() {
