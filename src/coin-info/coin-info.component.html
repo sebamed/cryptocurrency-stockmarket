@@ -15,10 +15,21 @@
 <div id="coin-menu">
     <div class="row">
         <div class="col s1 go-back">
-                <a class="btn-floating waves-effect waves-light"><i class="fa fa-arrow-left"></i></a>
+            <a [routerLink]="['/']" class="btn-floating waves-effect waves-light">
+                <i class="fa fa-arrow-left"></i>
+            </a>
         </div>
-        <div class="col s8 bordered coin-header"><i class="cc BTC"></i>aa
-
+        <div class="col s1">
+            <div class="icon">
+                <i class="cc {{ coinAlias }}">
+                </i>
+            </div>
+        </div>
+        <div class="col s1">
+            <div class="name">
+                <h4>{{ coinAlias }}</h4>
+                <h6>Desc</h6>
+            </div>
         </div>
     </div>
 </div>

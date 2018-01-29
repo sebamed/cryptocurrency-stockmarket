@@ -63,7 +63,12 @@
 .icon {
     float: left;
     height: 100%;
-    margin-left: 20px;
+    margin-left: 40px;
+}
+
+.icon i {
+    font-size: 1.3em;
+    line-height: 5px;
 }
 
 .coin-price h5 {

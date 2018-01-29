@@ -26,10 +26,25 @@
     background: #29b76496;
 }
 
-.coin-header {
-    
+.icon i {
+    font-size: 2.5em;
+    float: right;
 }
 
-.bordered {
-    border: 1px solid #000;
+.name h4 {
+    line-height: normal;
+    font-weight: normal;
+    color: #3f3f3f;
+    margin: 0;
+    font-size: 1.3em;
+    letter-spacing: 1px;
 }
+
+.name h6 {
+    font-weight: lighter;
+    color: #8f8f8f;
+    font-size: 0.7em;
+    letter-spacing: 1px;
+}
+
+

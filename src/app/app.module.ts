@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { NgStickyDirective } from 'ng-sticky';
 // NgCharts
 import { ChartsModule } from 'ng2-charts';
+// NgScrollReveal
+import { NgsRevealModule } from 'ng-scrollreveal';
 
 // routing
 import { routing } from './app-routing';
@@ -44,6 +46,7 @@ import { CoinInfoComponent } from '../coin-info/coin-info.component';
     HttpModule,
     FormsModule,
     ChartsModule,
+    NgsRevealModule.forRoot(),
     routing
   ],
   providers: [CoinService, RandomText],

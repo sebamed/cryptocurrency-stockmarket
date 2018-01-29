@@ -27,7 +27,7 @@
 <!-- table content -->
 <div class="hidden-data" *ngIf="loaded">
     <div class="data step" [class.show]="loaded">
-        <div id="list-row" *ngFor="let key of coins.RAW | ObjKeys; let i = index" [routerLink]="['/coin', key]">
+        <div id="list-row" *ngFor="let key of coins.RAW | ObjKeys; let i = index" [routerLink]="['/coin', key]" ngsReveal>
             <div class="wrapper list-row">
                 <div class="row-head row">
                     <div class="col s3 coin-name">
