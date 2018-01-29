@@ -1,6 +1,8 @@
 # Greetings
 - [ng-sticky](https://github.com/jonasmedeiros/ng-sticky) - Angular 4 library for making sticky elements
+- [ng-charts](https://github.com/valor-software/ng2-charts) - Angular library for integrating Chart.js
 - [REST API](https://www.cryptocompare.com/api/) - free cryptocurrency API - CryptoCompare
+
 
 # Summary
 - Coinranking.com copy with added elements built in Angular 4 with MaterializeCSS.
