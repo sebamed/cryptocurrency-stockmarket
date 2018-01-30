@@ -62,6 +62,7 @@ export class CurrencyListComponent implements OnInit, OnDestroy {
             () => {
                 this.setTimer();
                 console.log("loadovano");
+                $('.progress').fadeOut(500);
             }
         );
     }

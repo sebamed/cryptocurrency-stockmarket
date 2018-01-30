@@ -1,9 +1,29 @@
 #coin-menu {
     background: #fff;
-    padding: 20px 0;
+    padding: 10px 0;
     border-top: 1px solid #D6E2EB;
     border-bottom: 1px solid #D6E2EB;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    position: relative;
+    margin-bottom: 0;
+}
+
+#coin-body {
+    background: #342188;
+    padding: 10px 0;
+}
+
+.chart-panel {
+    width: 80%;
+    height: 476px;
+    display: table;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.chart {
+
 }
 
 .go-back {
@@ -11,7 +31,7 @@
 }
 
 .go-back a {
-    display: inline-block;
+    margin: 8.5px 0;
 }
 
 .btn-floating {
@@ -28,23 +48,43 @@
 
 .icon i {
     font-size: 2.5em;
+}
+
+.icon {
     float: right;
+    overflow: hidden;
+}
+
+.bordered {
+    border: 1px dashed #000;
 }
 
 .name h4 {
     line-height: normal;
     font-weight: normal;
     color: #3f3f3f;
+    font-size: 1.7em;
     margin: 0;
-    font-size: 1.3em;
     letter-spacing: 1px;
+}
+
+.name span {
+    float: right;
+    font-size: 1.7em;
+    line-height: 2.2em;
+}
+
+.coin-name {
+    float: left;
+}
+
+.name {
+    overflow: hidden;
 }
 
 .name h6 {
     font-weight: lighter;
     color: #8f8f8f;
-    font-size: 0.7em;
+    font-size: 0.8em;
     letter-spacing: 1px;
 }
-
-

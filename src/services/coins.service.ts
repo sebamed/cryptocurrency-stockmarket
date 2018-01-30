@@ -56,6 +56,7 @@ export class CoinService {
     // rest api
     coinsListUrl: string;
     coinsPriceHistoryUrl: string;
+    coinInfoUrl: string;
 
     result: any;
 
@@ -63,6 +64,7 @@ export class CoinService {
         //this.coinsListUrl = "https://min-api.cryptocompare.com/data/pricemulti?fsyms=" + this.getCoinsNames() + "&tsyms=USD";
         this.coinsListUrl = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" + this.getCoinsNames() + "&tsyms=USD";
         this.coinsPriceHistoryUrl = "";
+        this.coinInfoUrl = "";
     }
 
     getCoins(){
@@ -78,6 +80,12 @@ export class CoinService {
         // TODO: dodaj da pored aliasa prihvata koliko dana treba da prikaze
         this.coinsPriceHistoryUrl = 'https://min-api.cryptocompare.com/data/histoday?fsym=' + alias.toUpperCase() + '&tsym=USD&limit=15';
         return this._http.get(this.coinsPriceHistoryUrl)
+            .map(result => result.json());
+    }
+
+    getCoinInfo(alias: string){
+        this.coinInfoUrl = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" + alias + "&tsyms=USD"
+        return this._http.get(this.coinInfoUrl)
             .map(result => result.json());
     }
 

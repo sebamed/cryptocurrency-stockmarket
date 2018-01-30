@@ -18,7 +18,7 @@
     </div>
 </div>
 
-<div class="step" [class.show]="!loaded" style="position: absolute; left: 50%; top: 50%;">
+<div style="position: absolute; left: 50%; top: 50%;">
     <div class="progress" style="position: relative; left: -50%;">
         <div class="indeterminate"></div>
     </div>
@@ -26,7 +26,7 @@
 
 <!-- table content -->
 <div class="hidden-data" *ngIf="loaded">
-    <div class="data step" [class.show]="loaded">
+    <div class="data">
         <div id="list-row" *ngFor="let key of coins.RAW | ObjKeys; let i = index" [routerLink]="['/coin', key]" [ngsReveal]="{ reset: true}">
             <div class="wrapper list-row">
                 <div class="row-head row">

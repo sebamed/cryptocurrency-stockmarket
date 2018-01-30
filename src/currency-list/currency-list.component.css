@@ -80,13 +80,6 @@
     display: inline;
 }
 
-.show {
-    opacity: 1 !important;
-}
-
-.step {
-    opacity: 0;
-}
 
 .currency {
     color: #93969E;

@@ -5,6 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Chart } from 'chart.js';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
+import { Coin } from '../models/coin.model';
+
+declare var $: any;
 
 @Component({
     selector: 'app-coin-info',
@@ -12,6 +15,8 @@ import { Subscription } from 'rxjs/Subscription';
     styleUrls: ['./coin-info.component.css']
 })
 export class CoinInfoComponent implements OnInit, OnDestroy {
+
+    myCoin: Coin = new Coin();
 
     coinAlias: string;
     private sub: any;
@@ -25,6 +30,17 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
     coinChartData: Array<any> = [
         { data: this.coinPrices }
     ];
+
+    coinChartColors: Array<any> = [
+        { // ljubicasta i bela
+            backgroundColor: '#4837934b',
+            borderColor: '#fff',
+            pointBackgroundColor: '#fff',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#291a6c',
+            pointHoverBorderColor: '#fff'
+        },
+    ];
     coinChartLabels: Array<any> = this.coinTime;
     coinChartOptions: any = {
         responsive: true,
@@ -33,22 +49,32 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
         },
         elements: {
             line: {
-                tension: 0
+                tension: 0.12
             }
         },
         scales:
-        {
-            xAxes: [{
-                gridLines : {
-                    display : false
-                }
-            }],
-            yAxes: [{
-                gridLines : {
-                    display : false
-                }
-            }]
-        }
+            {
+                xAxes: [{
+                    
+                    gridLines: {
+                        display: false
+                    },
+                    ticks: {
+                        fontSize: 9,
+                        fontColor: '#fff'
+                      }
+                }],
+                yAxes: [{
+                    position: 'right',
+                    gridLines: {
+                        display: true
+                    },
+                    ticks: {
+                        fontSize: 9,
+                        fontColor: '#fff'
+                      }
+                }]
+            }
     }
 
     coinChartLegend: boolean = false;
@@ -58,6 +84,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
     subscription: Subscription;
 
     subCoins: Subscription;
+    subCoinInfo: Subscription;
 
     constructor(private _coins: CoinService,
         private _route: ActivatedRoute) {
@@ -70,14 +97,33 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        $('.chart').hide();
         this.getUrlParams(); // stavlja coinAlias na trenutni coin
+        this.getCoinInfo(this.coinAlias);
         this.getCoinsHistory();
     }
 
-    ngOnDestroy(){
+    ngOnDestroy() {
         this.subscription.unsubscribe();
         this.sub.unsubscribe();
         this.subCoins.unsubscribe();
+        this.subCoinInfo.unsubscribe();
+    }
+
+    getCoinInfo(alias: string) {
+        this.subCoinInfo = this._coins.getCoinInfo(alias).subscribe(res => {
+            console.log("TIP: " + res.RAW[alias]["USD"]["TYPE"]);
+            this.setMyCoin(res);
+        },
+            error => console.log(error),
+            () => {
+                console.log("uzet type");
+            })
+    }
+
+    setMyCoin(res: any) {
+        this.myCoin.alias = this.coinAlias;
+        this.myCoin.currentPrice = res.RAW[this.myCoin.alias]["USD"]["PRICE"];
     }
 
     initiateChart() {
@@ -85,13 +131,14 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
         this.subscription = this.timer.subscribe(() => {
             this.coinChartData = [
                 { data: this.coinPrices, label: this.coinAlias }
-            ];   
+            ];
         },
-        error => console.log(error),
-        () => {
-            this.initiateChart();
-        }
-    );
+            error => console.log(error),
+            () => {
+                this.initiateChart();
+                $('.chart').fadeIn();
+            }
+        );
     }
 
     getUrlParams() {

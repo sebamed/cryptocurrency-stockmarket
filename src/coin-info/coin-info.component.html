@@ -1,34 +1,37 @@
-<!-- chart 
-<div class="container">
-    <div class="row">
-        <div class="col s12">
-                <canvas baseChart width="400" height="400" 
-                [datasets]="coinChartData" 
-                [labels]="coinChartLabels" 
-                [options]="coinChartOptions"               
-                [chartType]="coinChartType" 
-                (chartClick)="chartClicked($event)"></canvas>
-        </div>
-    </div>
-</div> -->
-
-<div id="coin-menu">
-    <div class="row">
-        <div class="col s1 go-back">
+<div id="coin-menu" class="row">
+    <div class="col s1">
+        <div class="go-back">
             <a [routerLink]="['/']" class="btn-floating waves-effect waves-light">
                 <i class="fa fa-arrow-left"></i>
             </a>
         </div>
-        <div class="col s1">
-            <div class="icon">
-                <i class="cc {{ coinAlias }}">
-                </i>
-            </div>
+    </div>
+    <div class="col s1">
+        <div class="icon">
+            <i class="cc {{ coinAlias }}">
+            </i>
         </div>
-        <div class="col s1">
-            <div class="name">
+    </div>
+    <div class="col s2">
+        <div class="name">
+            <div class="coin-name">
                 <h4>{{ coinAlias }}</h4>
                 <h6>Desc</h6>
+            </div>
+            <span [(ngModel)]="myCoin.currentPrice" ngDefaultControl>{{ myCoin.currentPrice | currency:'USD':'2.2-4'}}</span>
+        </div>
+    </div>
+</div>
+<div id="coin-body">
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <div class="chart-panel">
+                    <div class="chart">
+                        <canvas class="canvas" baseChart [datasets]="coinChartData" [labels]="coinChartLabels" [options]="coinChartOptions" [colors]="coinChartColors" [chartType]="coinChartType"
+                            (chartClick)="chartClicked($event)"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
