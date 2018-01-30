@@ -5,9 +5,11 @@
 - [cryptocoins-icons](https://github.com/allienworks/cryptocoins) - Webfont with cryptocoins icons
 - [REST API](https://www.cryptocompare.com/api/) - free cryptocurrency API - CryptoCompare
 
-
 # Summary
 - Coinranking.com copy with added elements built in Angular 4 with MaterializeCSS.
+
+# DEMO
+soon
 
 # CryptocurrencyStockmarket
 
