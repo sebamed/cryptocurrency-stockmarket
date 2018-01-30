@@ -8,7 +8,7 @@
 # Summary
 - Coinranking.com copy with added elements built in Angular 4 with MaterializeCSS.
 
-# DEMO
+# Preview
 soon
 
 # CryptocurrencyStockmarket
