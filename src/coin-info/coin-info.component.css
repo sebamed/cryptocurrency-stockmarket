@@ -20,10 +20,24 @@
     display: table;
     margin: 0 auto;
     padding: 10px;
+    position: relative;
 }
 
-.chart {
+.preloader {
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+}
 
+.progress {
+    background: #291a6c;
+    height: 2px;
+    width: 220px;
+}
+
+.indeterminate {
+    background: #fff;
 }
 
 .go-back {

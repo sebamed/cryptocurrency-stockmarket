@@ -49,7 +49,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
         },
         elements: {
             line: {
-                tension: 0.12
+                tension: 0.12,
             }
         },
         scales:
@@ -60,7 +60,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
                         display: false
                     },
                     ticks: {
-                        fontSize: 9,
+                        fontSize: 8,
                         fontColor: '#fff'
                       }
                 }],
@@ -136,6 +136,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
             error => console.log(error),
             () => {
                 this.initiateChart();
+                $('.progress').fadeOut();
                 $('.chart').fadeIn();
             }
         );
@@ -166,7 +167,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
         for (var i = 0; i < this.coinData.length; i++) {
             let broj = Number(new Date(this.coinData[i].time * 1000));
             let date = new Date(broj);
-            this.coinTime.push(date.toString().substring(0, 15));
+            this.coinTime.push(date.toString().substring(0, 10));
             console.log(this.coinTime[i]);
         }
     }
