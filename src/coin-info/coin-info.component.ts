@@ -55,14 +55,14 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
         scales:
             {
                 xAxes: [{
-                    
+
                     gridLines: {
                         display: false
                     },
                     ticks: {
                         fontSize: 8,
                         fontColor: '#fff'
-                      }
+                    }
                 }],
                 yAxes: [{
                     position: 'right',
@@ -72,7 +72,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
                     ticks: {
                         fontSize: 9,
                         fontColor: '#fff'
-                      }
+                    }
                 }]
             }
     }
@@ -81,26 +81,25 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
     coinChartType: string = 'line';
 
     timer: Observable<any>;
-    subscription: Subscription;
+    timerPriceRefresh: Observable<any>;
 
+    subscription: Subscription;
     subCoins: Subscription;
     subCoinInfo: Subscription;
+    subCoinPriceRefresh: Subscription;
 
     constructor(private _coins: CoinService,
         private _route: ActivatedRoute) {
 
     }
 
-    // events
-    public chartClicked(e: any) {
-        console.log(e); // dodaj neku logiku
-    }
 
     ngOnInit() {
         $('.chart').hide();
         this.getUrlParams(); // stavlja coinAlias na trenutni coin
         this.getCoinInfo(this.coinAlias);
         this.getCoinsHistory();
+        this.refreshCoinPrice(30000);
     }
 
     ngOnDestroy() {
@@ -108,6 +107,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
         this.sub.unsubscribe();
         this.subCoins.unsubscribe();
         this.subCoinInfo.unsubscribe();
+        this.subCoinPriceRefresh.unsubscribe();
     }
 
     getCoinInfo(alias: string) {
@@ -119,6 +119,18 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
             () => {
                 console.log("uzet type");
             })
+    }
+
+    refreshCoinPrice(sec: number){
+        this.timerPriceRefresh = Observable.timer(sec);
+        this.subCoinPriceRefresh = this.timerPriceRefresh.subscribe(() => {
+            this.getCoinInfo(this.coinAlias);
+        },
+        error => console.log(error), 
+        () => {
+            this.refreshCoinPrice(30000);
+            console.log("refreshovnaa cena");
+        });
     }
 
     setMyCoin(res: any) {
@@ -178,4 +190,14 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
             console.log(this.coinPrices[i]);
         }
     }
+
+    // events
+    chartClicked(e: any) {
+        console.log(e); // dodaj neku logiku
+    }
+
+    chartHovered(e: any) {
+        console.log(e); // dodaj neku logiku
+    }
+
 }

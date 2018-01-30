@@ -33,7 +33,7 @@
                     <div class="chart">
 
                         <canvas class="canvas" baseChart [datasets]="coinChartData" [labels]="coinChartLabels" [options]="coinChartOptions" [colors]="coinChartColors"
-                            [chartType]="coinChartType" (chartClick)="chartClicked($event)"></canvas>
+                            [chartType]="coinChartType" (chartClick)="chartClicked($event)" (chartHover)="chartHovered($event)"></canvas>
 
                     </div>
                 </div>
