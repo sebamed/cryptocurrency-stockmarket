@@ -24,6 +24,8 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
 
     days: number; // koliko dana gleda
 
+    percentageDifference: number;
+
     coinData = [];
     coinPrices = [];
     coinTime = [];
@@ -48,18 +50,18 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
         },
     ];
     coinChartLabels: Array<any> = this.coinTime;
-    coinChartOptions: any = {    
-        responsive: true,  
+    coinChartOptions: any = {
+        responsive: true,
         tooltips: {
             callbacks: {
                 // formating tooltipova
-                label: function(tooltipItem, data) {
+                label: function (tooltipItem, data) {
                     return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 },
-            },            
+            },
             mode: 'label',
             intersect: false,
-            
+
         },
         hover: {
             mode: 'nearest',
@@ -178,6 +180,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
                 // this.initiateChart();
                 $('.progress').fadeOut();
                 $('.chart').fadeIn();
+                this.percentageDifference = this.calculatePercent();
             }
         );
     }
@@ -195,7 +198,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
             console.log("posle uzimanja: " + this.coinData.length);
         },
             error => console.log(error),
-            () => {
+            () => { // sve sto se desava nakon uzimanja podataka
                 console.log("uzeto: " + this.coinData[10].time + " a " + this.coinData[1].open);
                 this.setPriceArray();
                 this.setTimeArray();
@@ -227,7 +230,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
 
     setActive(event: any) {
         let chartButtons = document.getElementById("chart-buttons").children;
-        for(let i = 0; i < chartButtons.length; i++){
+        for (let i = 0; i < chartButtons.length; i++) {
             chartButtons[i].classList.remove("active");
         }
         event.srcElement.classList.add("active");
@@ -242,6 +245,10 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
         this.coinChartData = [
             { data: this.coinPrices, labels: [] }
         ];
+    }
+
+    calculatePercent(): number {
+        return (this.myCoin.currentPrice * 100) / this.coinPrices[0] - 100;
     }
 
     // events

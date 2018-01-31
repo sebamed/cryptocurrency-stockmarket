@@ -57,18 +57,64 @@ purple color palette:
     margin: 8.5px 0;
 }
 
-.btn-floating {
-    background: #2ecc7062;
+.chart-title {
+    margin-bottom: 10px;
+    float: left;
 }
 
+.chart-title h3 {
+    color: #5c4d9f;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+}
 
+.chart-panel:hover h3 {
+    color: #6c5fa5;
+}
+
+.coin-progress {
+    float: right;
+}
+
+.progress-body {
+    padding: 3px 13px 7px 13px;
+    background: transparent;
+    border: 1px solid #5c4d9f;
+    border-radius: 5px;
+    margin: 1.46rem 1.46em 1.168rem 0;
+}
+
+.progress-body i {
+    font-size: .6em;
+}
+
+.progress-body h6 {
+    display: inline;
+    font-weight: 900;
+    font-size: 0.7em;
+    letter-spacing: 1px;
+}
+
+.plus {
+    color: #29b765;
+    border: 1px solid #29b765;
+}
+
+.minus {
+    color: #e74c3c;
+    border: 1px solid #e74c3c;
+}
+
+.btn-floating {
+    background: #4837935d;
+}
 
 .btn-floating i {
-    color: #24a35a;
+    color: #483793;
 }
 
 .btn-floating:hover {
-    background: #29b76496;
+    background: #48379396;
 }
 
 .icon i {
@@ -112,10 +158,6 @@ purple color palette:
     color: #8f8f8f;
     font-size: 0.8em;
     letter-spacing: 1px;
-}
-
-.canvas {
-    
 }
 
 #chart-buttons {

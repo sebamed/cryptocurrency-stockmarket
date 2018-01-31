@@ -27,6 +27,19 @@
         <div class="row">
             <div class="col s12">
                 <div class="chart-panel">
+                    <div ngDefaultControl [(ngModel)]="myCoin.alias" class="chart-title">
+                        <h3>{{myCoin.alias}} price history</h3>
+                    </div>
+                    <div class="coin-progress" ngDefaultControl [(ngModel)]="percentageDifference">
+                        <div class="progress-body plus" *ngIf="percentageDifference >= 0">
+                            <i class="fa fa-caret-up"></i>
+                            <h6>{{ percentageDifference | number:'2.2'}} %</h6>
+                        </div>
+                        <div class="progress-body minus" *ngIf="percentageDifference < 0">
+                            <i class="fa fa-caret-down"></i>
+                            <h6>{{ percentageDifference | number:'1.1-2'}} %</h6>
+                        </div>
+                    </div>
                     <!-- preloader -->
                     <div class="progress preloader">
                         <div class="indeterminate"></div>
