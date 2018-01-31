@@ -48,6 +48,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
     coinChartLabels: Array<any> = this.coinTime;
     coinChartOptions: any = {
         responsive: true,
+
         tooltips: {
             mode: 'label',
             intersect: false,
@@ -81,6 +82,13 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
                         display: true
                     },
                     ticks: {
+                        callback: function (label, index, labels) {
+                            if (label >= 1000) {
+                                return '$ ' + label / 1000 + 'k';
+                            } else {
+                                return '$ ' + label.toString().substring(0, 6);
+                            }
+                        },
                         fontSize: 9,
                         fontColor: '#fff'
                     }
