@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class CoinService {
@@ -76,9 +78,9 @@ export class CoinService {
         return this.coinsList.toString();
     }
 
-    getCoinsPriceHistory(alias: string){
+    getCoinsPriceHistory(alias: string, days: number){
         // TODO: dodaj da pored aliasa prihvata koliko dana treba da prikaze
-        this.coinsPriceHistoryUrl = 'https://min-api.cryptocompare.com/data/histoday?fsym=' + alias.toUpperCase() + '&tsym=USD&limit=15';
+        this.coinsPriceHistoryUrl = 'https://min-api.cryptocompare.com/data/histoday?fsym=' + alias.toUpperCase() + '&tsym=USD&limit=' + days;
         return this._http.get(this.coinsPriceHistoryUrl)
             .map(result => result.json());
     }

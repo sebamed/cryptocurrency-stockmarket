@@ -1,3 +1,12 @@
+/*
+purple color palette:
+    main: #342188
+    hover: #2e1d7a
+    focus: #291a6c
+    btn-hover: #483793
+    btn-active: #5c4d9f
+*/
+
 #coin-menu {
     background: #fff;
     padding: 10px 0;
@@ -52,6 +61,8 @@
     background: #2ecc7062;
 }
 
+
+
 .btn-floating i {
     color: #24a35a;
 }
@@ -101,4 +112,29 @@
     color: #8f8f8f;
     font-size: 0.8em;
     letter-spacing: 1px;
+}
+
+.canvas {
+    cursor: crosshair;
+}
+
+.chart-buttons {
+    padding: 20px 0;
+}
+
+.btn {
+    font-size: 0.7em;
+    background: #291a6c;
+    text-transform: none;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    margin-right: 20px;
+}
+
+.btn:hover {
+    background: #483793;
+}
+
+.active {
+    background: #5c4d9f;
 }

@@ -19,18 +19,22 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
     myCoin: Coin = new Coin();
 
     coinAlias: string;
-    private sub: any;
+    sub: any;
+
+    days: number; // koliko dana gleda
 
     coinData = [];
     coinPrices = [];
     coinTime = [];
 
+    // chart
     coinChart = [];
-
     coinChartData: Array<any> = [
-        { data: this.coinPrices }
+        {
+            data: this.coinPrices,
+            label: this.coinTime
+        }
     ];
-
     coinChartColors: Array<any> = [
         { // ljubicasta i bela
             backgroundColor: '#4837934b',
@@ -44,6 +48,14 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
     coinChartLabels: Array<any> = this.coinTime;
     coinChartOptions: any = {
         responsive: true,
+        tooltips: {
+            mode: 'label',
+            intersect: false,
+        },
+        hover: {
+            mode: 'nearest',
+            intersect: true
+        },
         legend: {
             display: false,
         },
@@ -55,13 +67,12 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
         scales:
             {
                 xAxes: [{
-
                     gridLines: {
                         display: false
                     },
                     ticks: {
                         fontSize: 8,
-                        fontColor: '#fff'
+                        fontColor: '#fff',
                     }
                 }],
                 yAxes: [{
@@ -76,7 +87,6 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
                 }]
             }
     }
-
     coinChartLegend: boolean = false;
     coinChartType: string = 'line';
 
@@ -95,6 +105,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
 
 
     ngOnInit() {
+        this.days = 10; // default
         $('.chart').hide();
         this.getUrlParams(); // stavlja coinAlias na trenutni coin
         this.getCoinInfo(this.coinAlias);
@@ -121,16 +132,16 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
             })
     }
 
-    refreshCoinPrice(sec: number){
+    refreshCoinPrice(sec: number) {
         this.timerPriceRefresh = Observable.timer(sec);
         this.subCoinPriceRefresh = this.timerPriceRefresh.subscribe(() => {
             this.getCoinInfo(this.coinAlias);
         },
-        error => console.log(error), 
-        () => {
-            this.refreshCoinPrice(30000);
-            console.log("refreshovnaa cena");
-        });
+            error => console.log(error),
+            () => {
+                this.refreshCoinPrice(30000);
+                console.log("refreshovnaa cena");
+            });
     }
 
     setMyCoin(res: any) {
@@ -142,7 +153,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
         this.timer = Observable.timer(500);
         this.subscription = this.timer.subscribe(() => {
             this.coinChartData = [
-                { data: this.coinPrices, label: this.coinAlias }
+                { data: this.coinPrices, labels: this.coinTime }
             ];
         },
             error => console.log(error),
@@ -162,7 +173,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
     }
 
     getCoinsHistory() {
-        this._coins.getCoinsPriceHistory(this.coinAlias).subscribe(res => {
+        this._coins.getCoinsPriceHistory(this.coinAlias, this.days).subscribe(res => {
             this.coinData = res.Data; // uzima "Data" gnezdo iz objekta
             console.log("posle uzimanja: " + this.coinData.length);
         },
@@ -189,6 +200,22 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
             this.coinPrices.push(this.coinData[i].open);
             console.log(this.coinPrices[i]);
         }
+    }
+
+    clearArrays() {
+        this.coinTime = [];
+        this.coinPrices = [];
+        this.coinData = [];
+    }
+
+    setDays(days: number) {
+        this.clearArrays();
+        this.days = days;
+        this.getCoinsHistory();
+        this.coinChartLabels = this.coinTime;
+        this.coinChartData = [
+            { data: this.coinPrices, labels: [] }
+        ];
     }
 
     // events
