@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Coin } from '../models/coin.model';
 
+
 declare var $: any;
 
 @Component({
@@ -32,7 +33,8 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
     coinChartData: Array<any> = [
         {
             data: this.coinPrices,
-            label: this.coinTime
+            label: this.coinTime,
+            fillColor: '#008cba'
         }
     ];
     coinChartColors: Array<any> = [
@@ -46,12 +48,18 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
         },
     ];
     coinChartLabels: Array<any> = this.coinTime;
-    coinChartOptions: any = {
-        responsive: true,
-
+    coinChartOptions: any = {    
+        responsive: true,  
         tooltips: {
+            callbacks: {
+                // formating tooltipova
+                label: function(tooltipItem, data) {
+                    return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                },
+            },            
             mode: 'label',
             intersect: false,
+            
         },
         hover: {
             mode: 'nearest',
@@ -82,6 +90,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
                         display: true
                     },
                     ticks: {
+                        // formating cena
                         callback: function (label, index, labels) {
                             if (label >= 1000) {
                                 return '$ ' + label / 1000 + 'k';
@@ -166,7 +175,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
         },
             error => console.log(error),
             () => {
-                this.initiateChart();
+                // this.initiateChart();
                 $('.progress').fadeOut();
                 $('.chart').fadeIn();
             }
@@ -216,7 +225,16 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
         this.coinData = [];
     }
 
-    setDays(days: number) {
+    setActive(event: any) {
+        let chartButtons = document.getElementById("chart-buttons").children;
+        for(let i = 0; i < chartButtons.length; i++){
+            chartButtons[i].classList.remove("active");
+        }
+        event.srcElement.classList.add("active");
+    }
+
+    setDays(days: number, event: any) {
+        this.setActive(event);
         this.clearArrays();
         this.days = days;
         this.getCoinsHistory();

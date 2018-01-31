@@ -115,10 +115,10 @@ purple color palette:
 }
 
 .canvas {
-    cursor: crosshair;
+    
 }
 
-.chart-buttons {
+#chart-buttons {
     padding: 20px 0;
 }
 

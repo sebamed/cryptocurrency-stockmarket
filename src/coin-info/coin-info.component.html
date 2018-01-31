@@ -36,17 +36,17 @@
                         <canvas class="canvas" baseChart [datasets]="coinChartData" [labels]="coinChartLabels" [options]="coinChartOptions" [colors]="coinChartColors"
                             [chartType]="coinChartType" (chartClick)="chartClicked($event)" (chartHover)="chartHovered($event)"></canvas>
                         <!-- chart buttons -->
-                        <div class="chart-buttons">
-                            <a class="waves-effect waves-light btn active" (click)="setDays(10)">
+                        <div id="chart-buttons">
+                            <a class="waves-effect waves-light btn active" (click)="setDays(10, $event)">
                                 10 Days
                             </a>
-                            <a class="waves-effect waves-light btn" (click)="setDays(14)">
+                            <a class="waves-effect waves-light btn" (click)="setDays(14, $event)">
                                 14 Days
                             </a>
-                            <a class="waves-effect waves-light btn" (click)="setDays(30)">
+                            <a class="waves-effect waves-light btn" (click)="setDays(30, $event)">
                                 1 Month
                             </a>
-                            <a class="waves-effect waves-light btn" (click)="setDays(90)">
+                            <a class="waves-effect waves-light btn" (click)="setDays(90, $event)">
                                 3 Months
                             </a>
                         </div>
