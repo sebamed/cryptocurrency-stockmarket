@@ -35,13 +35,12 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
     coinChartData: Array<any> = [
         {
             data: this.coinPrices,
-            label: this.coinTime,
-            fillColor: '#008cba'
+            label: this.coinTime
         }
     ];
     coinChartColors: Array<any> = [
         { // ljubicasta i bela
-            backgroundColor: '#4837934b',
+            backgroundColor: '#4837936b',
             borderColor: '#fff',
             pointBackgroundColor: '#fff',
             pointBorderColor: '#fff',
@@ -57,22 +56,24 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
                 // formating tooltipova
                 label: function (tooltipItem, data) {
                     return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                },
+                }
             },
             mode: 'label',
-            intersect: false,
-
+            intersect: false
         },
         hover: {
             mode: 'nearest',
             intersect: true
         },
         legend: {
-            display: false,
+            display: false
         },
         elements: {
             line: {
-                tension: 0.12,
+                tension: 0.12
+            },
+            point: {
+                radius: 3.5
             }
         },
         scales:
@@ -83,7 +84,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
                     },
                     ticks: {
                         fontSize: 8,
-                        fontColor: '#fff',
+                        fontColor: '#fff'
                     }
                 }],
                 yAxes: [{
