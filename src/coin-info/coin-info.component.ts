@@ -51,11 +51,40 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
     coinChartLabels: Array<any> = this.coinTime;
     coinChartOptions: any = {
         responsive: true,
+        animation: {
+            duration: 800,
+            easing: 'easeOutQuart'
+        },
         tooltips: {
+            backgroundColor: 'rgba(40, 25, 106, .7)',
+            borderColor: 'rgba(40, 25, 106, .9)',
+            borderWidth: 1,
+            xPadding: 15,
+            yPadding: 10,
+            caretPadding: 15,
+            displayColors: false,
             callbacks: {
                 // formating tooltipova
+                title: function(tooltipItems, data) {
+                    // Pick first xLabel for now
+                    var title = '';
+                    var labels = data.labels;
+                    var labelCount = labels ? labels.length : 0;
+    
+                    if (tooltipItems.length > 0) {
+                        var item = tooltipItems[0];
+    
+                        if (item.xLabel) {
+                            title = item.xLabel;
+                        } else if (labelCount > 0 && item.index < labelCount) {
+                            title = labels[item.index];
+                        }
+                    }
+    
+                    return title;
+                },
                 label: function (tooltipItem, data) {
-                    return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' $';
                 }
             },
             mode: 'label',
