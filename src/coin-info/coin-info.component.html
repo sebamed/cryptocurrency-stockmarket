@@ -33,7 +33,7 @@
                     <div class="coin-progress" ngDefaultControl [(ngModel)]="percentageDifference">
                         <div class="progress-body plus" *ngIf="percentageDifference >= 0">
                             <i class="fa fa-caret-up"></i>
-                            <h6>{{ percentageDifference | number:'2.2'}} %</h6>
+                            <h6>{{ percentageDifference | number:'1.1-2'}} %</h6>
                         </div>
                         <div class="progress-body minus" *ngIf="percentageDifference < 0">
                             <i class="fa fa-caret-down"></i>
@@ -45,8 +45,8 @@
                         <div class="indeterminate"></div>
                     </div>
                     <!-- chart -->
-                    <div class="chart">
-                        <canvas class="canvas" baseChart [datasets]="coinChartData" [labels]="coinChartLabels" [options]="coinChartOptions" [colors]="coinChartColors"
+                    <div class="chart" id="chart-view">
+                        <canvas #chart class="canvas" baseChart [datasets]="coinChartData" [labels]="coinChartLabels" [options]="coinChartOptions" [colors]="coinChartColors"
                             [chartType]="coinChartType" (chartClick)="chartClicked($event)" (chartHover)="chartHovered($event)"></canvas>
                         <!-- chart buttons -->
                         <div id="chart-buttons">

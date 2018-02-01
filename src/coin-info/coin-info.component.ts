@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { OnInit, OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { CoinService } from '../services/coins.service';
 import { ActivatedRoute } from '@angular/router';
@@ -16,6 +16,7 @@ declare var $: any;
     styleUrls: ['./coin-info.component.css']
 })
 export class CoinInfoComponent implements OnInit, OnDestroy {
+    @ViewChild('chart') chart: ElementRef;
 
     myCoin: Coin = new Coin();
 
@@ -38,16 +39,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
             label: this.coinTime
         }
     ];
-    coinChartColors: Array<any> = [
-        { // ljubicasta i bela
-            backgroundColor: '#4837936b',
-            borderColor: '#fff',
-            pointBackgroundColor: '#fff',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#291a6c',
-            pointHoverBorderColor: '#fff'
-        },
-    ];
+    coinChartColors: Array<any> = [];
     coinChartLabels: Array<any> = this.coinTime;
     coinChartOptions: any = {
         responsive: true,
@@ -65,22 +57,22 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
             displayColors: false,
             callbacks: {
                 // formating tooltipova
-                title: function(tooltipItems, data) {
+                title: function (tooltipItems, data) {
                     // Pick first xLabel for now
                     var title = '';
                     var labels = data.labels;
                     var labelCount = labels ? labels.length : 0;
-    
+
                     if (tooltipItems.length > 0) {
                         var item = tooltipItems[0];
-    
+
                         if (item.xLabel) {
                             title = item.xLabel;
                         } else if (labelCount > 0 && item.index < labelCount) {
                             title = labels[item.index];
                         }
                     }
-    
+
                     return title;
                 },
                 label: function (tooltipItem, data) {
@@ -154,6 +146,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
 
 
     ngOnInit() {
+        this.setColors();
         this.days = 10; // default
         $('.chart').hide();
         this.getUrlParams(); // stavlja coinAlias na trenutni coin
@@ -168,6 +161,24 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
         this.subCoins.unsubscribe();
         this.subCoinInfo.unsubscribe();
         this.subCoinPriceRefresh.unsubscribe();
+    }
+
+    setColors(){
+        // pravljenje gradienta
+        let gradient = this.chart.nativeElement.getContext('2d').createLinearGradient(0, 0, 0, 450);
+        gradient.addColorStop(0, '#a89af065');
+        gradient.addColorStop(1, '#291a6c00');
+        this.coinChartColors = [
+            { // ljubicasta i bela
+                backgroundColor: gradient,
+                borderColor: '#a99af0',
+                pointBackgroundColor: '#a99af0',
+                pointBorderColor: '#a99af0',
+                pointHoverBackgroundColor: '#a99af0',
+                pointHoverBorderColor: '#fff'
+            },
+        ];
+        this.coinChartColors["backgroundColor"] = '#fff';
     }
 
     getCoinInfo(alias: string) {
