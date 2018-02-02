@@ -1,17 +1,21 @@
 import { Component } from '@angular/core';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { OnInit, OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { RandomText } from '../services/random-text.service';
+import { CoinService } from '../services/coins.service';
+import { Router } from '@angular/router';
+import { CurrencyListComponent } from '../currency-list/currency-list.component';
 
-
+declare var $: any;
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css']
+    styleUrls: ['./home.component.css'],
+    providers: [CurrencyListComponent]
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
     PageTitle: String;
 
@@ -19,22 +23,53 @@ export class HomeComponent implements OnInit {
     timer: Observable<any>;
     randomText: string;
 
-    constructor(private _random: RandomText){
-        
+    currencyList: string[] = [];
+
+    currentCurrency = '';
+
+    constructor(private _random: RandomText,
+        private _coins: CoinService,
+        private _router: Router, private cListComponent: CurrencyListComponent) {
+
     }
 
     ngOnInit() {
+        $('#currency-menu').hide();
+        this.getCurrencyList();
         this.PageTitle = 'Cryptocurrency Stock Market';
         this.randomText = this._random.getRandomText(this.randomText);
         this.getRandomText();
     }
 
-    getRandomText(){
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
+    }
+
+    getRandomText() {
         this.timer = Observable.timer(20000); // 20 sec
         this.subscription = this.timer.subscribe(() => {
             this.randomText = this._random.getRandomText(this.randomText);
             console.log(this.randomText);
             this.getRandomText();
         });
+    }
+
+    getCurrencyList() {
+        this.currencyList = this._coins.getCurrencyList();
+    }
+
+    setNewCurrency(currency) {
+        this.currentCurrency = currency;
+        this._coins.setCurrentCurrency(this.currentCurrency);
+        console.log('trenutna valuta: ' + this.currentCurrency);
+        this.cListComponent.getCoinData();
+    }
+
+    showMenu() {
+        $('#currency-menu').fadeIn(500);
+    }
+
+    hideMenu(){
+        $('#currency-menu').fadeOut(500);
     }
 }

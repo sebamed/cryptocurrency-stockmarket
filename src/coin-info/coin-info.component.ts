@@ -183,14 +183,12 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
 
     getCoinInfo(alias: string) {
         this.subCoinInfo = this._coins.getCoinInfo(alias).subscribe(res => {
-            console.log("TIP: " + res.RAW[alias]["USD"]["TYPE"]);
             this.setMyCoin(res);
         },
             error => console.log(error),
             () => {
-                console.log("uzet type");
-            })
-    }
+            });
+    };
 
     refreshCoinPrice(sec: number) {
         this.timerPriceRefresh = Observable.timer(sec);
@@ -206,7 +204,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
 
     setMyCoin(res: any) {
         this.myCoin.alias = this.coinAlias;
-        this.myCoin.currentPrice = res.RAW[this.myCoin.alias]["USD"]["PRICE"];
+        this.myCoin.currentPrice = res.RAW[this.myCoin.alias][this._coins.getCurrentCurrency()]["PRICE"];
     }
 
     initiateChart() {

@@ -47,3 +47,53 @@ nav {
     -o-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
 }
+
+.btn-menu {
+    border-radius: 50px;
+    background: transparent;
+    text-align: center;
+}
+
+.btn-menu i {
+    margin-right: 0;
+    color: #2ecc71;
+    font-size: 1.2em;
+}
+
+#currency-menu {
+    padding: 20px;
+    border: 1px solid #e3e4e6;
+    background: #fff;
+    width: 240px;
+    position: absolute;
+    border-radius: 5px;
+    top: 15px;
+    right: 15px;
+    z-index: 9999;
+}
+
+.close-menu {
+    text-align: right;
+}
+
+.close-menu i {
+    font-size: 1.3em;
+    color: #5F6D85;
+    cursor: pointer;
+}
+
+.close-menu i:hover {
+    color: #D6E2EB; /* crvenu dodaj */
+}
+
+.currency-base h6 {
+    font-size: 0.7em;
+    color: #A0A3AA;
+    text-transform: uppercase;
+    font-weight: bolder;
+    letter-spacing: .8px;
+}
+
+select {
+    display: block;
+}

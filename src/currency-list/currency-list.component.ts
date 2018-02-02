@@ -27,11 +27,14 @@ export class CurrencyListComponent implements OnInit, OnDestroy {
 
     scrolled: boolean;
 
+    currentCurrency = "USD";
+
     constructor(private _coins: CoinService) {
 
     }
 
-    ngOnInit() {        
+    ngOnInit() {  
+        this.currentCurrency = this._coins.getCurrentCurrency();      
         this.loaded = false;
         this.scrolled = false;
         this.getCoinData();
@@ -52,9 +55,10 @@ export class CurrencyListComponent implements OnInit, OnDestroy {
     }
 
     getCoinData(){
+        console.log("Uzimam sa valutom: " + this.currentCurrency);
         this.subscriptionoData = this._coins.getCoins().subscribe(res => {
             this.coins = res;
-            //console.log(res);
+            console.log(res);
         },
             error => {
                 console.log(error);

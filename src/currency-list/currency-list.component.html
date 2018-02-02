@@ -29,7 +29,7 @@
     <div class="data">
         <div id="list-row" *ngFor="let key of coins.RAW | ObjKeys; let i = index" [routerLink]="['/coin', key]" [ngsReveal]="{ reset: true}">
             <div class="wrapper list-row">
-                <div class="row-head row">
+                <div class="row-head row" ngDefaultControl [(ngModel)]="currentCurrency">
                     <div class="col s3 coin-name">
                         <div class="number">{{ i + 1 }}.</div>
                         <div class="icon">
@@ -39,20 +39,20 @@
                     </div>
                     <div class="col s3 coin-price">
                         <span class="currency">$</span>
-                        <h5>{{ coins.RAW[key]["USD"]["PRICE"] | number:'1.2-4' }}</h5>
+                        <h5>{{ coins.RAW[key][currentCurrency]["PRICE"] | number:'1.2-4' }}</h5>
                     </div>
                     <div class="col s3 coin-price">
                         <span class="currency">$</span>
-                        <h5>{{ coins.RAW[key]["USD"]["MKTCAP"] | number:'1.2-4' }}</h5>
+                        <h5>{{ coins.RAW[key][currentCurrency]["MKTCAP"] | number:'1.2-4' }}</h5>
                     </div>
                     <div class="col s3 coin-perc">
-                        <div class="plus" *ngIf="checkPercent(coins.RAW[key]['USD']['CHANGEPCT24HOUR'])">
+                        <div class="plus" *ngIf="checkPercent(coins.RAW[key][currentCurrency]['CHANGEPCT24HOUR'])">
                             <i class="fa fa-caret-up"></i>
-                            <h5>{{ coins.RAW[key]["USD"]["CHANGEPCT24HOUR"] | number:'1.2' }}%</h5>
+                            <h5>{{ coins.RAW[key][currentCurrency]["CHANGEPCT24HOUR"] | number:'1.2' }}%</h5>
                         </div>
-                        <div class="minus" *ngIf="!checkPercent(coins.RAW[key]['USD']['CHANGEPCT24HOUR'])">
+                        <div class="minus" *ngIf="!checkPercent(coins.RAW[key][currentCurrency]['CHANGEPCT24HOUR'])">
                             <i class="fa fa-caret-down"></i>
-                            <h5>{{ coins.RAW[key]["USD"]["CHANGEPCT24HOUR"] | number:'1.2' }}%</h5>
+                            <h5>{{ coins.RAW[key][currentCurrency]["CHANGEPCT24HOUR"] | number:'1.2' }}%</h5>
                         </div>
                     </div>
                 </div>

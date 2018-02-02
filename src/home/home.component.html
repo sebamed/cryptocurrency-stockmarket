@@ -22,12 +22,23 @@
                 </a>
             </li>
             <li>
-                <a class="waves-effect waves-light btn">Refresh
-                    <i class="fa fa-refresh left"></i>
+                <a class="waves-effect waves-light btn-menu btn" (click)="showMenu()">
+                    <i class="fa fa-usd left"></i>
                 </a>
             </li>
         </ul>
     </div>
 </nav>
+<div id="currency-menu">
+    <div class="close-menu">
+        <i class="fa fa-close" (click)="hideMenu()"></i>
+    </div>
+    <div class="currency-base">
+        <h6>Choose currency base:</h6>
+        <select (change)="setNewCurrency($event.target.value)">
+            <option *ngFor="let currency of currencyList" value="{{currency}}">{{currency}}</option>
+        </select>
+    </div>
+</div>
 <!-- end of navigation -->
 <router-outlet></router-outlet>

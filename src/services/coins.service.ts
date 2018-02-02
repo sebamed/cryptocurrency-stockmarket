@@ -7,6 +7,12 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class CoinService {
 
+    // currency list
+    currencyList: string[] = [
+        'USD',
+        'EUR'
+    ];
+
     // coins list
     coinsList: string[] = [
         'BTC',
@@ -57,36 +63,49 @@ export class CoinService {
     coinsListUrl: string;
     coinsPriceHistoryUrl: string;
     coinInfoUrl: string;
+    coinCurrency: string = 'USD';
 
     result: any;
 
-    constructor(private _http: Http){
+    constructor(private _http: Http) {
         //this.coinsListUrl = "https://min-api.cryptocompare.com/data/pricemulti?fsyms=" + this.getCoinsNames() + "&tsyms=USD";
-        this.coinsListUrl = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" + this.getCoinsNames() + "&tsyms=USD";
+        this.coinsListUrl = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" + this.getCoinsNames() + "&tsyms=" + this.coinCurrency;
         this.coinsPriceHistoryUrl = "";
         this.coinInfoUrl = "";
     }
 
-    getCoins(){
+    setCurrentCurrency(currency) {
+        this.coinCurrency = currency;
+    }
+
+    getCurrentCurrency(){
+        return this.coinCurrency;
+    }
+
+    getCoins() {
+        this.coinsListUrl = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" + this.getCoinsNames() + "&tsyms=" + this.coinCurrency;
         return this._http.get(this.coinsListUrl)
             .map(result => result.json());
     }
 
-    getCoinsNames(){
+    getCoinsNames() {
         return this.coinsList.toString();
     }
 
-    getCoinsPriceHistory(alias: string, days: number){
-        // TODO: dodaj da pored aliasa prihvata koliko dana treba da prikaze
-        this.coinsPriceHistoryUrl = 'https://min-api.cryptocompare.com/data/histoday?fsym=' + alias.toUpperCase() + '&tsym=USD&limit=' + days;
+    getCoinsPriceHistory(alias: string, days: number) {
+        this.coinsPriceHistoryUrl = 'https://min-api.cryptocompare.com/data/histoday?fsym=' + alias.toUpperCase() + '&tsym=' + this.coinCurrency + '&limit=' + days;
         return this._http.get(this.coinsPriceHistoryUrl)
             .map(result => result.json());
     }
 
-    getCoinInfo(alias: string){
-        this.coinInfoUrl = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" + alias + "&tsyms=USD"
+    getCoinInfo(alias: string) {
+        this.coinInfoUrl = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" + alias + "&tsyms=" + this.coinCurrency;
+        console.log(this.coinInfoUrl);
         return this._http.get(this.coinInfoUrl)
             .map(result => result.json());
     }
 
+    getCurrencyList(): string[] {
+        return this.currencyList;
+    }
 }
