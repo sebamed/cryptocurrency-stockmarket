@@ -28,6 +28,7 @@ export class CurrencyListComponent implements OnInit, OnDestroy {
     scrolled: boolean;
 
     currentCurrency = "USD";
+    currentSymbol = "$";
 
     constructor(private _coins: CoinService) {
 
@@ -67,6 +68,7 @@ export class CurrencyListComponent implements OnInit, OnDestroy {
                 this.setTimer();
                 console.log("loadovano");
                 $('.progress').fadeOut(500);
+                this.currentSymbol = this._coins.getCurrentCurrencySymbol();
             }
         );
     }

@@ -31,6 +31,8 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
     coinPrices = [];
     coinTime = [];
 
+    currentSymbol = '$';
+
     // chart
     coinChart = [];
     coinChartData: Array<any> = [
@@ -75,8 +77,8 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
 
                     return title;
                 },
-                label: function (tooltipItem, data) {
-                    return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' $';
+                label: (tooltipItem, data) => {
+                    return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + this.currentSymbol;
                 }
             },
             mode: 'label',
@@ -84,7 +86,10 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
         },
         hover: {
             mode: 'nearest',
-            intersect: true
+            intersect: true,
+            onHover: (event, active) => {
+                // ovde dodaj to gore sto se radikj
+            }
         },
         legend: {
             display: false
@@ -115,11 +120,11 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
                     },
                     ticks: {
                         // formating cena
-                        callback: function (label, index, labels) {
+                        callback: (label, index, labels) => {
                             if (label >= 1000) {
-                                return '$ ' + label / 1000 + 'k';
+                                return this.currentSymbol + ' ' + label / 1000 + 'k';
                             } else {
-                                return '$ ' + label.toString().substring(0, 6);
+                                return this.currentSymbol + ' ' + label.toString().substring(0, 6);
                             }
                         },
                         fontSize: 9,
@@ -163,7 +168,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
         this.subCoinPriceRefresh.unsubscribe();
     }
 
-    setColors(){
+    setColors() {
         // pravljenje gradienta
         let gradient = this.chart.nativeElement.getContext('2d').createLinearGradient(0, 0, 0, 450);
         gradient.addColorStop(0, '#a89af065');
@@ -241,6 +246,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
                 console.log("uzeto: " + this.coinData[10].time + " a " + this.coinData[1].open);
                 this.setPriceArray();
                 this.setTimeArray();
+                this.currentSymbol = this._coins.getCurrentCurrencySymbol();
                 this.initiateChart();
             });
     }

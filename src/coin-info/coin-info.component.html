@@ -13,12 +13,12 @@
         </div>
     </div>
     <div class="col s2">
-        <div class="name">
+        <div class="name" ngDefaultControl [(ngModel)]="currentSymbol">
             <div class="coin-name">
                 <h4>{{ coinAlias }}</h4>
                 <h6>Desc</h6>
             </div>
-            <span [(ngModel)]="myCoin.currentPrice" ngDefaultControl>{{ myCoin.currentPrice | currency:'USD':'2.2-4'}}</span>
+            <span [(ngModel)]="myCoin.currentPrice" ngDefaultControl>{{ currentSymbol }}  {{ myCoin.currentPrice | number:'2.2-4'}}</span>
         </div>
     </div>
 </div>
@@ -26,9 +26,9 @@
     <div class="container">
         <div class="row">
             <div class="col s12">
-                <div class="chart-panel">
+                <div class="chart-panel" ngDefaultControl [(ngModel)]="currentSymbol">
                     <div ngDefaultControl [(ngModel)]="myCoin.alias" class="chart-title">
-                        <h3>{{myCoin.alias}} price history</h3>
+                        <h3>{{myCoin.alias}} price history chart in {{ currentSymbol }}</h3>
                     </div>
                     <div class="coin-progress" ngDefaultControl [(ngModel)]="percentageDifference">
                         <div class="progress-body plus" *ngIf="percentageDifference >= 0">
@@ -46,8 +46,8 @@
                     </div>
                     <!-- chart -->
                     <div class="chart" id="chart-view">
-                        <canvas #chart class="canvas" baseChart [datasets]="coinChartData" [labels]="coinChartLabels" [options]="coinChartOptions" [colors]="coinChartColors"
-                            [chartType]="coinChartType" (chartClick)="chartClicked($event)" (chartHover)="chartHovered($event)"></canvas>
+                        <canvas #chart class="canvas" baseChart [datasets]="coinChartData" [labels]="coinChartLabels" [options]="coinChartOptions"
+                            [colors]="coinChartColors" [chartType]="coinChartType" (chartClick)="chartClicked($event)" (chartHover)="chartHovered($event)"></canvas>
                         <!-- chart buttons -->
                         <div id="chart-buttons">
                             <a class="waves-effect waves-light btn active" (click)="setDays(10, $event)">

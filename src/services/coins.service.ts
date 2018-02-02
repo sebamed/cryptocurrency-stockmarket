@@ -7,6 +7,24 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class CoinService {
 
+    currencySymbols = {
+        'USD': '$', // US Dollar
+        'EUR': '€', // Euro
+        'CRC': '₡', // Costa Rican Colón
+        'GBP': '£', // British Pound Sterling
+        'ILS': '₪', // Israeli New Sheqel
+        'INR': '₹', // Indian Rupee
+        'JPY': '¥', // Japanese Yen
+        'KRW': '₩', // South Korean Won
+        'NGN': '₦', // Nigerian Naira
+        'PHP': '₱', // Philippine Peso
+        'PLN': 'zł', // Polish Zloty
+        'PYG': '₲', // Paraguayan Guarani
+        'THB': '฿', // Thai Baht
+        'UAH': '₴', // Ukrainian Hryvnia
+        'VND': '₫', // Vietnamese Dong
+    };
+
     // currency list
     currencyList: string[] = [
         'USD',
@@ -107,5 +125,9 @@ export class CoinService {
 
     getCurrencyList(): string[] {
         return this.currencyList;
+    }
+
+    getCurrentCurrencySymbol(){
+        return this.currencySymbols[this.coinCurrency];
     }
 }

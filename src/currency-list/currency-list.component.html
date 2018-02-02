@@ -28,7 +28,7 @@
 <div class="hidden-data" *ngIf="loaded">
     <div class="data">
         <div id="list-row" *ngFor="let key of coins.RAW | ObjKeys; let i = index" [routerLink]="['/coin', key]" [ngsReveal]="{ reset: true}">
-            <div class="wrapper list-row">
+            <div class="wrapper list-row" ngDefaultControl [(ngModel)]="currentSymbol">
                 <div class="row-head row" ngDefaultControl [(ngModel)]="currentCurrency">
                     <div class="col s3 coin-name">
                         <div class="number">{{ i + 1 }}.</div>
@@ -38,11 +38,11 @@
                         <h5>{{ key }}</h5>
                     </div>
                     <div class="col s3 coin-price">
-                        <span class="currency">$</span>
+                        <span class="currency">{{currentSymbol}}</span>
                         <h5>{{ coins.RAW[key][currentCurrency]["PRICE"] | number:'1.2-4' }}</h5>
                     </div>
                     <div class="col s3 coin-price">
-                        <span class="currency">$</span>
+                        <span class="currency">{{currentSymbol}}</span>
                         <h5>{{ coins.RAW[key][currentCurrency]["MKTCAP"] | number:'1.2-4' }}</h5>
                     </div>
                     <div class="col s3 coin-perc">

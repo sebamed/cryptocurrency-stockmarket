@@ -23,7 +23,7 @@
             </li>
             <li>
                 <a class="waves-effect waves-light btn-menu btn" (click)="showMenu()">
-                    <i class="fa fa-usd left"></i>
+                    <span>{{_coins.getCurrentCurrencySymbol()}}</span>
                 </a>
             </li>
         </ul>
@@ -38,6 +38,11 @@
         <select (change)="setNewCurrency($event.target.value)">
             <option *ngFor="let currency of currencyList" value="{{currency}}">{{currency}}</option>
         </select>
+    </div>
+    <div class="convert-button">
+        <a class="waves-effect waves-light btn" (click)="applyNewCurrency()">
+            Convert
+        </a>
     </div>
 </div>
 <!-- end of navigation -->

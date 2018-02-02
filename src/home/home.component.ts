@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     currencyList: string[] = [];
 
     currentCurrency = '';
+    tempCurrency = '';
 
     constructor(private _random: RandomText,
         private _coins: CoinService,
@@ -59,10 +60,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     setNewCurrency(currency) {
-        this.currentCurrency = currency;
-        this._coins.setCurrentCurrency(this.currentCurrency);
-        console.log('trenutna valuta: ' + this.currentCurrency);
-        this.cListComponent.getCoinData();
+        this.tempCurrency = currency;
     }
 
     showMenu() {
@@ -71,5 +69,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     hideMenu(){
         $('#currency-menu').fadeOut(500);
+    }
+
+    applyNewCurrency(){
+        this.currentCurrency = this.tempCurrency;
+        this._coins.setCurrentCurrency(this.currentCurrency);
+        console.log('trenutna valuta: ' + this.currentCurrency);
+        this.cListComponent.getCoinData();
+        this.hideMenu();
     }
 }

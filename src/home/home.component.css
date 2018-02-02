@@ -54,7 +54,7 @@ nav {
     text-align: center;
 }
 
-.btn-menu i {
+.btn-menu span {
     margin-right: 0;
     color: #2ecc71;
     font-size: 1.2em;
@@ -96,4 +96,16 @@ nav {
 
 select {
     display: block;
+    cursor: pointer;
+    border: 1px solid #D6E2EB;
 }
+
+select:hover {
+    border-color: #2ecc71;
+}
+
+.convert-button {
+    padding: 20px 0 0 0;
+    text-align: center;
+}
+
