@@ -18,7 +18,7 @@
                 <h4>{{ coinAlias }}</h4>
                 <h6>Desc</h6>
             </div>
-            <span [(ngModel)]="myCoin.currentPrice" ngDefaultControl>{{ currentSymbol }}  {{ myCoin.currentPrice | number:'2.2-4'}}</span>
+            <span [(ngModel)]="myCoin.currentPrice" ngDefaultControl>{{ currentSymbol }} {{ myCoin.currentPrice | number:'2.2-4'}}</span>
         </div>
     </div>
 </div>
@@ -27,17 +27,25 @@
         <div class="row">
             <div class="col s12">
                 <div class="chart-panel" ngDefaultControl [(ngModel)]="currentSymbol">
-                    <div ngDefaultControl [(ngModel)]="myCoin.alias" class="chart-title">
-                        <h3>{{myCoin.alias}} price history chart in {{ currentSymbol }}</h3>
-                    </div>
-                    <div class="coin-progress" ngDefaultControl [(ngModel)]="percentageDifference">
-                        <div class="progress-body plus" *ngIf="percentageDifference >= 0">
-                            <i class="fa fa-caret-up"></i>
-                            <h6>{{ percentageDifference | number:'1.1-2'}} %</h6>
+                    <div class="chart-info">
+                        <div ngDefaultControl [(ngModel)]="myCoin.alias" class="chart-title">
+                            <h3>{{myCoin.alias}} price history chart in {{ currentSymbol }}</h3>
                         </div>
-                        <div class="progress-body minus" *ngIf="percentageDifference < 0">
-                            <i class="fa fa-caret-down"></i>
-                            <h6>{{ percentageDifference | number:'1.1-2'}} %</h6>
+                        <div class="coin-progress" ngDefaultControl [(ngModel)]="percentageDifference">
+                            <div class="progress-body plus" *ngIf="percentageDifference >= 0">
+                                <i class="fa fa-caret-up"></i>
+                                <h6>{{ percentageDifference | number:'1.1-2'}} %</h6>
+                            </div>
+                            <div class="progress-body minus" *ngIf="percentageDifference < 0">
+                                <i class="fa fa-caret-down"></i>
+                                <h6>{{ percentageDifference | number:'1.1-2'}} %</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-tooltip">
+                        <div class="tooltip" ngDefaultControl [(ngModel)]="currentSymbol">
+                            <span ngDefaultControl [(ngModel)]="chartTtDate">{{ chartTtDate }} - </span>
+                            <span ngDefaultControl [(ngModel)]="chartTtPrice">{{ currentSymbol}} {{ chartTtPrice }}</span>
                         </div>
                     </div>
                     <!-- preloader -->
@@ -47,7 +55,7 @@
                     <!-- chart -->
                     <div class="chart" id="chart-view">
                         <canvas #chart class="canvas" baseChart [datasets]="coinChartData" [labels]="coinChartLabels" [options]="coinChartOptions"
-                            [colors]="coinChartColors" [chartType]="coinChartType" (chartClick)="chartClicked($event)" (chartHover)="chartHovered($event)"></canvas>
+                            [colors]="coinChartColors" [chartType]="coinChartType" (chartClick)="chartClicked($event)" (mouseleave)="hideToolTip()"></canvas>
                         <!-- chart buttons -->
                         <div id="chart-buttons">
                             <a class="waves-effect waves-light btn active" (click)="setDays(10, $event)">

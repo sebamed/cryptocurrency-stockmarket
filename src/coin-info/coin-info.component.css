@@ -59,13 +59,13 @@ purple color palette:
 
 .chart-title {
     margin-bottom: 10px;
-    float: left;
 }
 
 .chart-title h3 {
     color: #5c4d9f;
     font-size: 1.2em;
     letter-spacing: 1px;
+    float: left;
 }
 
 .chart-panel:hover h3 {
@@ -161,6 +161,7 @@ purple color palette:
 }
 
 #chart-buttons {
+    margin-top: 40px;
     padding: 20px 0;
 }
 
@@ -180,3 +181,20 @@ purple color palette:
 .active {
     background: #5c4d9f;
 }
+
+.tooltip {
+    border: 1px solid rgba(40, 25, 106, .9);
+    border-radius: 8px;
+    padding: 10px 10px 13px 10px;
+    position: absolute;
+    background: rgba(40, 25, 106, .7);
+}
+
+.tooltip span {
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #fff;
+    font-weight: 900;
+    font-size: 0.6em;
+}
+

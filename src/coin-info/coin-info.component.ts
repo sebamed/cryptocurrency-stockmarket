@@ -50,6 +50,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
             easing: 'easeOutQuart'
         },
         tooltips: {
+            enabled: false, // stavi true ako zelis da vidis i zakomentarisi onHover metodu u hover opciji
             backgroundColor: 'rgba(40, 25, 106, .7)',
             borderColor: 'rgba(40, 25, 106, .9)',
             borderWidth: 1,
@@ -88,7 +89,21 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
             mode: 'nearest',
             intersect: true,
             onHover: (event, active) => {
-                // ovde dodaj to gore sto se radikj
+                $('.canvas').mousemove((event) => {
+                    if (typeof active[0] === 'undefined') {
+                        return;
+                    } else {
+                        try {
+                            this.chartTtDate = this.coinTime[active[0]._index];
+                            this.chartTtPrice = this.coinPrices[active[0]._index];
+                            var positionLeft = event.clientX - this.chartTooltip.width() / 2 - 390;
+                            var positionTop = event.clientY - this.chartTooltip.width() / 2 - 120;
+                            $('.tooltip').show().css({ 'position': 'absolute', 'left': positionLeft, 'top': positionTop });
+                            this.chartLastIndex = active[0]._index;
+                        } catch (error) {
+                        }
+                    }
+                });
             }
         },
         legend: {
@@ -99,7 +114,9 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
                 tension: 0.12
             },
             point: {
-                radius: 3.5
+                radius: 3.5,
+                hoverRadius: 10,
+                hitRadius: 100
             }
         },
         scales:
@@ -144,6 +161,11 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
     subCoinInfo: Subscription;
     subCoinPriceRefresh: Subscription;
 
+    chartTooltip;
+    chartTtDate;
+    chartTtPrice;
+    chartLastIndex = 0;
+
     constructor(private _coins: CoinService,
         private _route: ActivatedRoute) {
 
@@ -151,8 +173,11 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
 
 
     ngOnInit() {
+        this.chartTtDate = '';
+        this.chartTooltip = $('.tooltip');
         this.setColors();
         this.days = 10; // default
+        this.hideToolTip();
         $('.chart').hide();
         this.getUrlParams(); // stavlja coinAlias na trenutni coin
         this.getCoinInfo(this.coinAlias);
@@ -296,13 +321,18 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
         return (this.myCoin.currentPrice * 100) / this.coinPrices[0] - 100;
     }
 
+    hideToolTip() {
+        $('.tooltip').hide(100);
+        this.chartTtDate = '';
+    }
+
+    showToolTip() {
+        $('.toooltip').fadeIn(200);
+        this.chartTtDate = '';
+    }
+
     // events
     chartClicked(e: any) {
         console.log(e); // dodaj neku logiku
     }
-
-    chartHovered(e: any) {
-        console.log(e); // dodaj neku logiku
-    }
-
 }
