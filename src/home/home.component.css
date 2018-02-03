@@ -98,10 +98,15 @@ select {
     display: block;
     cursor: pointer;
     border: 1px solid #D6E2EB;
+    font-size: 0.7em;
 }
 
 select:hover {
     border-color: #2ecc71;
+}
+
+option {
+    font-size: 1em;
 }
 
 .convert-button {

@@ -27,8 +27,21 @@ export class CoinService {
 
     // currency list
     currencyList: string[] = [
-        'USD',
-        'EUR'
+        'USD - United States Dollar',
+        'EUR - Euro',
+        'CRC - Costa Rican Colón',
+        'GBP - British Pound Sterling',
+        'ILS - Israeli New Sheqel',
+        'INR - Indian Rupee',
+        'JPY - Japanese Yen',
+        'KRW - South Korean Won',
+        'NGN - Nigerian Naira',
+        'PHP - Philippine Peso',
+        'PLN - Polish Zloty',
+        'PYG - Paraguayan Guarani',
+        'THB - Thai Baht',
+        'UAH - Ukrainian Hryvnia',
+        'VND - Vietnamese Dong'
     ];
 
     // coins list
@@ -93,7 +106,7 @@ export class CoinService {
     }
 
     setCurrentCurrency(currency) {
-        this.coinCurrency = currency;
+        this.coinCurrency = currency.substring(0, 3);
     }
 
     getCurrentCurrency(){
