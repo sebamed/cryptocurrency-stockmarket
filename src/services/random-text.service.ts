@@ -5,9 +5,12 @@ export class RandomText {
 
     randomText: string[] = [
         'Updates every 30 seconds',
+        'Synchronized updates',
         'Latest prices on stock market',
         'Information gathered from CoinCompare API',
-        'Design heavily inspired by CoinRanking'
+        'Design heavily inspired by CoinRanking',
+        'Built with Angular 5, jQuery, MaterializeCSS',
+        'Made for fun and educational purposes'
     ];
 
     getRandomText(current: string){

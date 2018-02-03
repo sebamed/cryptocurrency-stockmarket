@@ -34,8 +34,8 @@ export class CurrencyListComponent implements OnInit, OnDestroy {
 
     }
 
-    ngOnInit() {  
-        this.currentCurrency = this._coins.getCurrentCurrency();      
+    ngOnInit() {
+        this.currentCurrency = this._coins.getCurrentCurrency();
         this.loaded = false;
         this.scrolled = false;
         this.getCoinData();
@@ -50,12 +50,12 @@ export class CurrencyListComponent implements OnInit, OnDestroy {
         });
     }
 
-    ngOnDestroy(){
+    ngOnDestroy() {
         this.subscriptionTimer.unsubscribe();
         this.subscriptionoData.unsubscribe();
     }
 
-    getCoinData(){
+    getCoinData() {
         console.log("Uzimam sa valutom: " + this.currentCurrency);
         this.subscriptionoData = this._coins.getCoins().subscribe(res => {
             this.coins = res;

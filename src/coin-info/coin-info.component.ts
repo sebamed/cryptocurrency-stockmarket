@@ -96,8 +96,8 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
                         try {
                             this.chartTtDate = this.coinTime[active[0]._index];
                             this.chartTtPrice = this.coinPrices[active[0]._index];
-                            var positionLeft = event.clientX - this.chartTooltip.width() / 2 - 390;
-                            var positionTop = event.clientY - this.chartTooltip.width() / 2 - 120;
+                            var positionLeft = event.pageX - this.chartTooltip.width() / 2 - 390;
+                            var positionTop = event.pageY - this.chartTooltip.width() / 2 - 120;
                             $('.tooltip').show().css({ 'position': 'absolute', 'left': positionLeft, 'top': positionTop });
                             this.chartLastIndex = active[0]._index;
                         } catch (error) {

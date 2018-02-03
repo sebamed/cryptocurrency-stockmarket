@@ -80,7 +80,6 @@ export class CoinService {
         'BTCD',
         'BTM',
         'CLOAK',
-        'DAO',
         'DCR',
         'DCT',
         'DMD',
