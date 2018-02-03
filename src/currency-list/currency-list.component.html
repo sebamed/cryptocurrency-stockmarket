@@ -18,11 +18,13 @@
     </div>
 </div>
 
+<div class="preloader" *ngIf="!loaded"></div>
 <div style="position: absolute; left: 50%; top: 50%;">
     <div class="progress" style="position: relative; left: -50%;">
         <div class="indeterminate"></div>
     </div>
 </div>
+
 
 <!-- table content -->
 <div class="hidden-data" *ngIf="loaded">
@@ -65,4 +67,3 @@
         <i class="fa fa-arrow-up"></i>
     </a>
 </div>
-<app-footer *ngIf="loaded"></app-footer>

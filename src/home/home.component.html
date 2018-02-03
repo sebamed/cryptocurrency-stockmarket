@@ -40,10 +40,11 @@
         </select>
     </div>
     <div class="convert-button">
-        <a [routerLink]="['/']"class="waves-effect waves-light btn" (click)="applyNewCurrency()">
+        <a [routerLink]="['/coin']"class="waves-effect waves-light btn" (click)="applyNewCurrency()">
             Convert
         </a>
     </div>
 </div>
 <!-- end of navigation -->
 <router-outlet></router-outlet>
+<app-footer></app-footer>

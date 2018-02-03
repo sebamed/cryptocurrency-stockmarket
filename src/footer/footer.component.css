@@ -1,0 +1,79 @@
+.about {
+    background: #E9ECEF;
+    padding: 25px 0 20px 0;
+}
+
+.image p {
+    float: right;
+}
+
+.project h4 {
+    color: #212529;
+    font-weight: bolder;
+    letter-spacing: 1px;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+.project p {
+    line-height: 30px;
+}
+
+.project p a {
+    color: #2ecc71;
+}
+
+.project p a:hover {
+    color: #29b765;
+}
+
+.btn-green {
+    background: transparent;
+    border: 1px solid #2ecc71;
+    color: #2ecc71;
+    border-radius: 5px;
+    padding: 10px 15px;
+    display: inline-block;
+    margin-right: 10px;
+    transition: all .2s ease-in-out;
+}
+
+.btn-green span {
+    margin-left: 10px;
+}
+
+.btn-green span {
+    font-size: 1em;
+}
+
+.btn-green:hover {
+    background: #2ecc71;
+    color: #fff;
+}
+
+.end {
+    border-top: 1px solid #D6E2EB;
+    background: #F7F7F7;
+    padding: 30px 0 20px 0;
+}
+
+.end p {
+    font-size: 0.6em;
+    letter-spacing: 0.5px;
+    color: #93969E;
+    line-height: 5px;
+}
+
+.end p i {
+    color: #e74c3c;
+    line-height: 5px;
+}
+
+.end p a {
+    color: #707070;
+    font-weight: bold;
+}
+
+.end p a:hover {
+    color: #29b765;
+}

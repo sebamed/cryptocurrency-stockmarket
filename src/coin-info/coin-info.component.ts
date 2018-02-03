@@ -116,7 +116,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
             point: {
                 radius: 3.5,
                 hoverRadius: 10,
-                hitRadius: 100
+                hitRadius: 120
             }
         },
         scales:
@@ -315,6 +315,9 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
         this.coinChartData = [
             { data: this.coinPrices, labels: [] }
         ];
+        if(days === 30){
+            this.coinChartOptions.elements.point.hoverRadius = 30;
+        }
     }
 
     calculatePercent(): number {

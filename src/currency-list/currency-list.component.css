@@ -129,6 +129,10 @@
     font-size: 0.6em;
 }
 
+.preloader {
+    height: 1200px;
+}
+
 .row-head::after {
     clear: none;
 }
