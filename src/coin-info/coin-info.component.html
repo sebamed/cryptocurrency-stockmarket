@@ -33,12 +33,12 @@
                         </div>
                         <div class="coin-progress" ngDefaultControl [(ngModel)]="percentageDifference">
                             <div class="progress-body plus" *ngIf="percentageDifference >= 0">
-                                <i class="fa fa-caret-up"></i>
                                 <h6>{{ percentageDifference | number:'1.1-2'}} %</h6>
+                                <i class="fa fa-caret-up"></i>
                             </div>
                             <div class="progress-body minus" *ngIf="percentageDifference < 0">
+                                <h6>{{ percentageDifference | number:'1.1-2' | slice:1}} %</h6>
                                 <i class="fa fa-caret-down"></i>
-                                <h6>{{ percentageDifference | number:'1.1-2'}} %</h6>
                             </div>
                         </div>
                     </div>

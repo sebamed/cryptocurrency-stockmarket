@@ -5,10 +5,10 @@ export class RandomText {
 
     randomText: string[] = [
         'Updates every 30 seconds',
-        'Neki random text 1',
-        'Neki random text 2',
-        'Neki random text 3'
-    ]
+        'Latest prices on stock market',
+        'Information gathered from CoinCompare API',
+        'Design heavily inspired by CoinRanking'
+    ];
 
     getRandomText(current: string){
         let rand = Math.floor((Math.random() * this.randomText.length));
