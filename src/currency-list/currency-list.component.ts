@@ -59,7 +59,7 @@ export class CurrencyListComponent implements OnInit, OnDestroy {
         console.log("Uzimam sa valutom: " + this.currentCurrency);
         this.subscriptionoData = this._coins.getCoins().subscribe(res => {
             this.coins = res;
-            console.log(res);
+            console.log(this.coins.RAW);
         },
             error => {
                 console.log(error);
@@ -92,7 +92,7 @@ export class CurrencyListComponent implements OnInit, OnDestroy {
             console.log("Refresovano");
             this._coins.getCoins().subscribe(res => {
                 this.coins = res;
-                //console.log(res);
+                //console.log('rest' + res);
             });
             this.refreshData(seconds);
         });

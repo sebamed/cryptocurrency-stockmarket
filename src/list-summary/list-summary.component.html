@@ -1,47 +1,46 @@
 <div id="list-summary" ngDefaultControl [(ngModel)]="currentCurrencySymbol">
     <div class="container">
         <div class="row">
-            <div class="col s3 summary-column">
+            <div class="col s3 summary-column" [ngsReveal]="{ reset: true}">
                 <div class="summary">
                     <div class="summary-title">
                         <h6>Total market cap</h6>
                     </div>
-                    <div class="summary-price">
+                    <div class="summary-price" ngDefaultControl [(ngModel)]="totalMarketCap">
                         <span>{{ currentCurrencySymbol }}</span>
-                        <p>123,123,123</p>
+                        <p>{{ totalMarketCap | number:'1.2-4' }}</p>
                     </div>
                 </div>
             </div>
-            <div class="col s3 summary-column">
+            <div class="col s3 summary-column" [ngsReveal]="{ reset: true}">
                 <div class="summary">
                     <div class="summary-title">
                         <h6>Total supply</h6>
                     </div>
-                    <div class="summary-price">
+                    <div class="summary-price" ngDefaultControl [(ngModel)]="totalSupply">
                         <span>{{ currentCurrencySymbol }}</span>
-                        <p>123,123,123</p>
+                        <p>{{ totalSupply | number:'1.2-4' }}</p>
                     </div>
                 </div>
             </div>
-            <div class="col s3 summary-column">
+            <div class="col s3 summary-column" [ngsReveal]="{ reset: true}">
                     <div class="summary">
                         <div class="summary-title">
                             <h6>24h trade volume</h6>
                         </div>
-                        <div class="summary-price">
+                        <div class="summary-price" ngDefaultModel [(ngModel)]="total24hTradeVolume">
                             <span>{{ currentCurrencySymbol }}</span>
-                            <p>123,123,123</p>
+                            <p>{{ total24hTradeVolume | number:'1.2-4' }}</p>
                         </div>
                     </div>
                 </div>
-            <div class="col s3 summary-column">
+            <div class="col s3 summary-column" [ngsReveal]="{ reset: true}">
                 <div class="summary">
                     <div class="summary-title">
                         <h6>Number of coins</h6>
                     </div>
-                    <div class="summary-price">
-                        <span>{{ currentCurrencySymbol }}</span>
-                        <p>123,123,123</p>
+                    <div class="summary-price" ngDefaultControl [(ngModel)]="totalCoins">
+                        <p>{{ totalCoins }}</p>
                     </div>
                 </div>
             </div> 
