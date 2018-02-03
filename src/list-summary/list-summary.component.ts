@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { OnInit, OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { CoinService } from '../services/coins.service';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
     selector: 'app-list-summary',
@@ -17,6 +19,10 @@ export class ListSummaryComponent implements OnInit, OnDestroy {
     total24hTradeVolume = 0;
     totalCoins = 0;
 
+    timerRefresh: Observable<any>;
+    subRefresh: Subscription;
+    subCoins: Subscription;
+
     coins: any;
 
     constructor(private _coin: CoinService) {
@@ -27,14 +33,30 @@ export class ListSummaryComponent implements OnInit, OnDestroy {
         this.currentCurrencySymbol = this._coin.getCurrentCurrencySymbol();
         this.currenctCurrency = this._coin.getCurrentCurrency();
         this.setCoins();
+        this.refreshValues(30000);
     }
 
     ngOnDestroy() {
+        this.subRefresh.unsubscribe();
+        this.subCoins.unsubscribe();
+    }
 
+    refreshValues(seconds) {
+        this.timerRefresh = Observable.timer(seconds);
+        this.subRefresh = this.timerRefresh.subscribe(() => {
+            this.setSummaryValues();
+        },
+            error => {
+                console.log(error);
+            },
+            () => {
+                console.log('refreshovan summary');
+                this.refreshValues(30000);
+            });
     }
 
     setCoins() {
-        this._coin.getCoins().subscribe(res => {
+        this.subCoins = this._coin.getCoins().subscribe(res => {
             this.coins = res;
         },
             error => {
@@ -48,6 +70,7 @@ export class ListSummaryComponent implements OnInit, OnDestroy {
     }
 
     setSummaryValues() {
+        this.resetValues();
         for (let coin in this.coins.RAW) {
             this.totalMarketCap += this.coins.RAW[coin][this.currenctCurrency]['MKTCAP'];
             this.totalSupply += this.coins.RAW[coin][this.currenctCurrency]['SUPPLY'];
@@ -55,5 +78,12 @@ export class ListSummaryComponent implements OnInit, OnDestroy {
                 this.coins.RAW[coin][this.currenctCurrency]['TOTALVOLUME24H'];
             this.totalCoins++;
         }
+    }
+
+    resetValues(){
+        this.totalMarketCap = 0;
+        this.totalSupply = 0
+        this.total24hTradeVolume = 0;
+        this.totalCoins = 0;
     }
 }

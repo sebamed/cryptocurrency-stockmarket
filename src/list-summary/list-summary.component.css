@@ -5,13 +5,16 @@
 
 .summary-column {
     padding: 10px 10px;
+
 }
 
 .summary {
     border: 1px solid #D6E2EB;
     border-radius: 5px;
     padding: 30px 20px;
+    transition: all .3s ease-in-out;
 }
+
 
 .summary-title h6 {
     color: #8F99AF;
@@ -35,4 +38,22 @@
     letter-spacing: 2px;
     font-weight: 900;
     display: inline;
+}
+
+.summary:hover {
+    background: #29b765;
+    border: 1px solid #29b765;
+    cursor: pointer;
+}
+
+.summary:hover h6 {
+    color: #fff;
+}
+
+.summary:hover span {
+    color: #fff;
+}
+
+.summary:hover p {
+    color: #fff;
 }

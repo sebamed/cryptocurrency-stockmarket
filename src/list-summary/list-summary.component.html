@@ -28,7 +28,7 @@
                         <div class="summary-title">
                             <h6>24h trade volume</h6>
                         </div>
-                        <div class="summary-price" ngDefaultModel [(ngModel)]="total24hTradeVolume">
+                        <div class="summary-price" ngDefaultControl [(ngModel)]="total24hTradeVolume">
                             <span>{{ currentCurrencySymbol }}</span>
                             <p>{{ total24hTradeVolume | number:'1.2-4' }}</p>
                         </div>
