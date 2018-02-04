@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     tempCurrency = '';
 
     constructor(private _random: RandomText,
-        private _coins: CoinService,
+        public _coins: CoinService,
         private _router: Router, private cListComponent: CurrencyListComponent) {
 
     }
