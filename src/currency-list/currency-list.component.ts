@@ -41,6 +41,7 @@ export class CurrencyListComponent implements OnInit, OnDestroy {
         this.currentCurrency = this._coins.getCurrentCurrency();
         this.getCoinData();
         this.subscriptionEmitter = this._coins.currencyUpdated.subscribe(() => {
+            $('.progress').fadeIn();
             this.ngOnInit();
         });
         this.refreshData(30000);

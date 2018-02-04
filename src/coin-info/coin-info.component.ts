@@ -181,6 +181,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
 
 
     ngOnInit() {
+        this.scrollToTop();
         this.chartTtDate = '';
         this.chartTooltip = $('.tooltip');
         this.setColors();
@@ -200,6 +201,12 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
         this.subCoinInfo.unsubscribe();
         this.subCoinPriceRefresh.unsubscribe();
         this.subCurrentCoin.unsubscribe();
+    }
+
+    scrollToTop() {
+        $('html, body').animate({
+            scrollTop: 0
+        }, 800);
     }
 
     setColors() {

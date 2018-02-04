@@ -78,8 +78,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.hideMenu();
     }
 
-    
-
     scrollToTop() {
         $('html, body').animate({
             scrollTop: 0

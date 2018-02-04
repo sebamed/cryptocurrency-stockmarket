@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-// NgStickyDirective
-import { NgStickyDirective } from 'ng-sticky';
+// NgStickyModule
+import { NgStickyModule } from 'ng-sticky';
 // NgCharts
 import { ChartsModule } from 'ng2-charts';
 // NgScrollReveal
@@ -37,7 +37,6 @@ import { ListSummaryComponent } from '../list-summary/list-summary.component';
     FavouritesComponent,
     CurrencyListComponent,
     FooterComponent,
-    NgStickyDirective,
     CoinInfoComponent,
     ListSummaryComponent,
     KeysPipe
@@ -47,6 +46,7 @@ import { ListSummaryComponent } from '../list-summary/list-summary.component';
     RouterModule,
     HttpModule,
     FormsModule,
+    NgStickyModule,
     ChartsModule,
     NgsRevealModule.forRoot(),
     routing
