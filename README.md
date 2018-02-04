@@ -1,5 +1,6 @@
 # Preview
 Application preview [here](https://sebamed.github.io/cryptocurrency-stockmarket/)
+Not quite mobile friendly, tho. Still working ono that!!! 
 
 # Greetings
 - [ng-sticky](https://github.com/jonasmedeiros/ng-sticky) - Angular 4 library for making sticky elements
