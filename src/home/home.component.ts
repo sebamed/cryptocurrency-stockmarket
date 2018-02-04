@@ -74,10 +74,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     applyNewCurrency(){
         this.currentCurrency = this.tempCurrency;
         this._coins.setCurrentCurrency(this.currentCurrency);
-        console.log('trenutna valuta: ' + this.currentCurrency);
-        this.cListComponent.getCoinData();
+        console.log('trenutna valuta: aaaaaaa ' + this.currentCurrency);
         this.hideMenu();
+        this.cListComponent.getCoinData();
     }
+
+    
 
     scrollToTop() {
         $('html, body').animate({

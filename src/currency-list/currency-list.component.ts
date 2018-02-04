@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { OnInit, OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
+import { OnInit, OnDestroy, OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 import { CoinService } from '../services/coins.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
@@ -27,17 +27,17 @@ export class CurrencyListComponent implements OnInit, OnDestroy {
 
     scrolled: boolean;
 
-    currentCurrency = "USD";
-    currentSymbol = "$";
+    currentCurrency = '';
+    currentSymbol = '';
 
     constructor(private _coins: CoinService) {
 
     }
 
     ngOnInit() {
-        this.currentCurrency = this._coins.getCurrentCurrency();
         this.loaded = false;
         this.scrolled = false;
+        this.currentCurrency = this._coins.getCurrentCurrency();
         this.getCoinData();
         this.refreshData(30000);
         $('.fixed-action-btn').hide();
@@ -52,7 +52,6 @@ export class CurrencyListComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.subscriptionTimer.unsubscribe();
-        this.subscriptionoData.unsubscribe();
     }
 
     getCoinData() {
@@ -99,5 +98,4 @@ export class CurrencyListComponent implements OnInit, OnDestroy {
             return false;
         }
     }
-
 }

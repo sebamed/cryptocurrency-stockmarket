@@ -52,7 +52,6 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
     coinChartColors: Array<any> = [];
     coinChartLabels: Array<any> = this.coinTime;
     coinChartOptions: any = {
-        responsive: true,
         animation: {
             duration: 800,
             easing: 'easeOutQuart'
