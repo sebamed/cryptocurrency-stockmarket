@@ -27,9 +27,17 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
 
     percentageDifference: number;
 
+    coinMarketCap;
+    coinSupply;
+    coinChange;
+    coinTotalVolume;
+
     coinData = [];
     coinPrices = [];
     coinTime = [];
+
+    currentCoin: any;
+    currentCurrency;
 
     currentSymbol = '$';
 
@@ -127,7 +135,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
                     },
                     ticks: {
                         fontSize: 8,
-                        fontColor: '#fff'
+                        fontColor: '#5c4d9f'
                     }
                 }],
                 yAxes: [{
@@ -227,6 +235,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
         },
             error => console.log(error),
             () => {
+                this.setCurrentCoinInfo();
                 this.refreshCoinPrice(30000);
                 console.log("refreshovnaa cena");
             });
@@ -272,6 +281,8 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
                 this.setPriceArray();
                 this.setTimeArray();
                 this.currentSymbol = this._coins.getCurrentCurrencySymbol();
+                this.currentCurrency = this._coins.getCurrentCurrency();
+                this.setCurrentCoinInfo();
                 this.initiateChart();
             });
     }
@@ -287,7 +298,12 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
 
     setPriceArray() {
         for (var i = 0; i < this.coinData.length; i++) {
-            this.coinPrices.push(this.coinData[i].open);
+            if (i == this.coinData.length - 1) { // poslednji dodaje trenutnu cenu
+                this.coinPrices.push(this.myCoin.currentPrice);
+            }
+            else {
+                this.coinPrices.push(this.coinData[i].open);
+            }
             console.log(this.coinPrices[i]);
         }
     }
@@ -315,7 +331,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
         this.coinChartData = [
             { data: this.coinPrices, labels: [] }
         ];
-        if(days === 30){
+        if (days === 30) {
             this.coinChartOptions.elements.point.hoverRadius = 30;
         }
     }
@@ -332,6 +348,21 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
     showToolTip() {
         $('.toooltip').fadeIn(200);
         this.chartTtDate = '';
+    }
+
+    setCurrentCoinInfo() {
+        this._coins.getCurrentCoin(this.coinAlias).subscribe(res => {
+            this.currentCoin = res;
+        }, error => {
+            console.log(error);
+        },
+            () => {
+                console.log('uzet trenutni: ' + this.currentCoin.RAW[this.coinAlias][this.currentCurrency]["TYPE"]);
+                this.coinSupply = this.currentCoin.RAW[this.coinAlias][this.currentCurrency]['SUPPLY'];
+                this.coinMarketCap = this.currentCoin.RAW[this.coinAlias][this.currentCurrency]['MKTCAP'];
+                this.coinTotalVolume = this.currentCoin.RAW[this.coinAlias][this.currentCurrency]['TOTALVOLUME24HTO'] - this.currentCoin.RAW[this.coinAlias][this.currentCurrency]['TOTALVOLUME24H'];
+                this.coinChange = this.coinPrices[this.coinPrices.length - 1] - this.coinPrices[this.coinPrices.length - 2];
+            });
     }
 
     // events

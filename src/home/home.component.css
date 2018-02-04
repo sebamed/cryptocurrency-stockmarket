@@ -114,3 +114,16 @@ option {
     text-align: center;
 }
 
+.btn-floating {
+    background: #2ecc7010;
+}
+
+.btn-floating i {
+    color: #29b765;
+}
+
+.btn-floating:hover {
+    background: #29b76496;
+    color: #24a35a;
+}
+

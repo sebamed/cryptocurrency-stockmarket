@@ -18,7 +18,7 @@
                 <h4>{{ coinAlias }}</h4>
                 <h6>Desc</h6>
             </div>
-            <span [(ngModel)]="myCoin.currentPrice" ngDefaultControl>{{ currentSymbol }} {{ myCoin.currentPrice | number:'2.2-4'}}</span>
+            <span [(ngModel)]="myCoin.currentPrice" ngDefaultControl>{{ currentSymbol }} {{ myCoin.currentPrice | number:'1.2-4'}}</span>
         </div>
     </div>
 </div>
@@ -71,6 +71,45 @@
                                 3 Months
                             </a>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" ngDefaultControl [(ngModel)]="currentSymbol" [ngsReveal]="{ reset: true}">
+            <div class="col s3 info-column">
+                <div class="coin-stats coin-rank">
+                    <p>Coin rank:</p>
+                    <span>3</span>
+                </div>
+            </div>
+            <div class="col s3 info-column">
+                <div class="coin-stats coin-summary">
+                    <div class="coin-summary-info" ngDefaultControl [(ngModel)]="coinMarketCap">
+                        <p>Market cap</p>
+                        <span class="currency">{{ currentSymbol }}</span>
+                        <span>{{ coinMarketCap | number:'1.2-4' }}</span>
+                    </div>
+                    <div class="spacer"></div>
+                    <div class="coin-summary-info" ngDefaultControl [(ngModel)]="coinTotalVolume">
+                        <p>24h volume</p>
+                        <span class="currency">{{ currentSymbol }}</span>
+                        <span>{{ coinTotalVolume | number:'1.2-4'}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col s3 info-column">
+                <div class="coin-stats coin-summary">
+                    <div class="coin-summary-info" ngDefaultControl [(ngModel)]="coinSupply">
+                        <p>Coin supply</p>
+                        <span class="currency">{{ currentSymbol }}</span>
+                        <span>{{ coinSupply | number:'1.2-4'}}</span>
+                    </div>
+                    <div class="spacer"></div>
+                    <div class="coin-summary-info" ngDefaultControl [(ngModel)]="coinChange">
+                        <p>24h change</p>
+                        <span class="currency">{{ currentSymbol }}</span>
+                        <div *ngIf="coinChange >= 0" class="choice plus">{{ coinChange | number:'1.2-4' }} <i class="fa fa-caret-up"></i></div>
+                        <div *ngIf="coinChange < 0" class="choice minus">{{ coinChange | number:'1.2-4' }} <i class="fa fa-caret-down"></i></div>
                     </div>
                 </div>
             </div>

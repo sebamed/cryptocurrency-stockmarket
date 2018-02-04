@@ -80,12 +80,6 @@ export class CurrencyListComponent implements OnInit, OnDestroy {
         });
     }
 
-    scrollToTop() {
-        $('html, body').animate({
-            scrollTop: 0
-        }, 800);
-    }
-
     refreshData(seconds: number) {
         this.timer = Observable.timer(seconds); // 30 sekundi
         this.subscriptionTimer = this.timer.subscribe(() => {

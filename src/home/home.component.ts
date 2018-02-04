@@ -78,4 +78,10 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.cListComponent.getCoinData();
         this.hideMenu();
     }
+
+    scrollToTop() {
+        $('html, body').animate({
+            scrollTop: 0
+        }, 800);
+    }
 }

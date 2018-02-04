@@ -93,14 +93,15 @@ export class CoinService {
     coinsListUrl: string;
     coinsPriceHistoryUrl: string;
     coinInfoUrl: string;
+    coinCurrentInfo: string;
     coinCurrency: string = 'USD';
 
     result: any;
 
     constructor(private _http: Http) {
-        //this.coinsListUrl = "https://min-api.cryptocompare.com/data/pricemulti?fsyms=" + this.getCoinsNames() + "&tsyms=USD";
         this.coinsListUrl = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" + this.getCoinsNames() + "&tsyms=" + this.coinCurrency;
         this.coinsPriceHistoryUrl = "";
+        this.coinCurrentInfo = "";
         this.coinInfoUrl = "";
     }
 
@@ -108,7 +109,7 @@ export class CoinService {
         this.coinCurrency = currency.substring(0, 3);
     }
 
-    getCurrentCurrency(){
+    getCurrentCurrency() {
         return this.coinCurrency;
     }
 
@@ -135,11 +136,17 @@ export class CoinService {
             .map(result => result.json());
     }
 
+    getCurrentCoin(alias: string) {
+        this.coinCurrentInfo = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + alias + '&tsyms=' + this.coinCurrency;
+        return this._http.get(this.coinCurrentInfo)
+            .map(result => result.json());
+    }
+
     getCurrencyList(): string[] {
         return this.currencyList;
     }
 
-    getCurrentCurrencySymbol(){
+    getCurrentCurrencySymbol() {
         return this.currencySymbols[this.coinCurrency];
     }
 }
