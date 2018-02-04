@@ -1,3 +1,6 @@
+# Preview
+Application preview [here](https://sebamed.github.io/cryptocurrency-stockmarket/)
+
 # Greetings
 - [ng-sticky](https://github.com/jonasmedeiros/ng-sticky) - Angular 4 library for making sticky elements
 - [ng-charts](https://github.com/valor-software/ng2-charts) - Angular library for integrating Chart.js
@@ -7,9 +10,6 @@
 
 # Summary
 - Coinranking.com copy with added elements built in Angular 4 with MaterializeCSS.
-
-# Preview
-soon
 
 # CryptocurrencyStockmarket
 
