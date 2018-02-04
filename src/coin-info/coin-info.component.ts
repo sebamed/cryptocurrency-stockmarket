@@ -168,6 +168,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
     subCoins: Subscription;
     subCoinInfo: Subscription;
     subCoinPriceRefresh: Subscription;
+    subCurrentCoin: Subscription;
 
     chartTooltip;
     chartTtDate;
@@ -199,6 +200,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
         this.subCoins.unsubscribe();
         this.subCoinInfo.unsubscribe();
         this.subCoinPriceRefresh.unsubscribe();
+        this.subCurrentCoin.unsubscribe();
     }
 
     setColors() {
@@ -244,6 +246,11 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
     setMyCoin(res: any) {
         this.myCoin.alias = this.coinAlias;
         this.myCoin.currentPrice = res.RAW[this.myCoin.alias][this._coins.getCurrentCurrency()]["PRICE"];
+        this.coinPrices[this.coinPrices.length - 1] = this.myCoin.currentPrice;
+        this.coinChartData = [
+            { data: this.coinPrices }
+        ];
+        console.log('chart poslednji: ' + this.coinPrices[this.coinPrices.length - 1] + ' a treba ' + this.myCoin.currentPrice);
     }
 
     initiateChart() {
@@ -351,7 +358,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
     }
 
     setCurrentCoinInfo() {
-        this._coins.getCurrentCoin(this.coinAlias).subscribe(res => {
+        this.subCurrentCoin = this._coins.getCurrentCoin(this.coinAlias).subscribe(res => {
             this.currentCoin = res;
         }, error => {
             console.log(error);
