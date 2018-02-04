@@ -98,25 +98,11 @@ purple color palette:
 .plus {
     color: #29b765;
     border: 1px solid #29b765;
-    transition: all .2s ease-in-out;
-}
-
-.plus:hover {
-    background: #29b765;
-    color: #fff;
-    border: 1px solid #fff;
 }
 
 .minus {
     color: #e74c3c;
     border: 1px solid #e74c3c;
-    transition: all .2s ease-in-out;
-}
-
-.minus:hover {
-    background: #e74c3c;
-    color: #fff;
-    border: 1px solid #fff;
 }
 
 .btn-floating {
@@ -161,6 +147,7 @@ purple color palette:
 
 .coin-name {
     float: left;
+    padding: 13px 0;
 }
 
 .name {

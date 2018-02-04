@@ -23,6 +23,7 @@ export class CurrencyListComponent implements OnInit, OnDestroy {
     loaded: boolean;
     subscriptionTimer: Subscription;
     subscriptionoData: Subscription;
+    subscriptionEmitter: Subscription;
     timer: Observable<any>;
 
     scrolled: boolean;
@@ -39,6 +40,9 @@ export class CurrencyListComponent implements OnInit, OnDestroy {
         this.scrolled = false;
         this.currentCurrency = this._coins.getCurrentCurrency();
         this.getCoinData();
+        this.subscriptionEmitter = this._coins.currencyUpdated.subscribe(() => {
+            this.ngOnInit();
+        });
         this.refreshData(30000);
         $('.fixed-action-btn').hide();
         $(window).scroll(function () {
@@ -52,10 +56,11 @@ export class CurrencyListComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.subscriptionTimer.unsubscribe();
+        this.subscriptionEmitter.unsubscribe();
+        this.subscriptionoData.unsubscribe();
     }
 
     getCoinData() {
-        console.log("Uzimam sa valutom: " + this.currentCurrency);
         this.subscriptionoData = this._coins.getCoins().subscribe(res => {
             this.coins = res;
             console.log(this.coins.RAW);
@@ -83,19 +88,12 @@ export class CurrencyListComponent implements OnInit, OnDestroy {
         this.timer = Observable.timer(seconds); // 30 sekundi
         this.subscriptionTimer = this.timer.subscribe(() => {
             console.log("Refresovano");
-            this._coins.getCoins().subscribe(res => {
-                this.coins = res;
-                //console.log('rest' + res);
-            });
+            this.getCoinData();
             this.refreshData(seconds);
         });
     }
 
     checkPercent(perc: number) {
-        if (perc >= 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return perc >= 0;
     }
 }

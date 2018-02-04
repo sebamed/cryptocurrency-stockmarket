@@ -3,9 +3,12 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
+import { EventEmitter } from '@angular/core';
 
 @Injectable()
 export class CoinService {
+
+    currencyUpdated: EventEmitter<any> = new EventEmitter();
 
     currencySymbols = {
         'USD': '$', // US Dollar
@@ -105,15 +108,20 @@ export class CoinService {
         this.coinInfoUrl = "";
     }
 
+    setCurrencyUpdate(currency) {
+        this.coinCurrency = currency;
+        this.currencyUpdated.emit(this.coinCurrency);
+    }
+
     setCurrentCurrency(currency) {
         this.coinCurrency = currency.substring(0, 3);
     }
 
     getCurrentCurrency() {
-        return this.coinCurrency;
+        return this.coinCurrency.substring(0, 3);
     }
 
-    getCoins() {
+    getCoins(): Observable<any> {
         this.coinsListUrl = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" + this.getCoinsNames() + "&tsyms=" + this.coinCurrency;
         return this._http.get(this.coinsListUrl)
             .map(result => result.json());

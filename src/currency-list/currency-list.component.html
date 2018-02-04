@@ -29,7 +29,7 @@
 <!-- table content -->
 <div class="hidden-data" *ngIf="loaded">
     <div class="data">
-        <div id="list-row" *ngFor="let key of coins.RAW | ObjKeys; let i = index" [routerLink]="['/coin', key]" [ngsReveal]="{ reset: true}">
+        <div id="list-row" *ngFor="let key of coins.RAW | ObjKeys; let i = index;" [routerLink]="['/coin', key]" [ngsReveal]="{ reset: true}">
             <div class="wrapper list-row" ngDefaultControl [(ngModel)]="currentSymbol">
                 <div class="row-head row" ngDefaultControl [(ngModel)]="currentCurrency">
                     <div class="col s3 coin-name">
