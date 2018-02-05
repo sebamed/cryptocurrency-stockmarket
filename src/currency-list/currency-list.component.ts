@@ -75,15 +75,13 @@ export class CurrencyListComponent implements OnInit, OnDestroy {
                 this.coinList = [];
                 for (let i = 0; i < this._coins.getCoinsAlias().length; i++) {
                     this.coin = new Coin();
-                        this.coin.setAlias(this._coins.getCoinsAlias()[i]);
-                        this.coin.setCurrentPrice(this.coins.RAW[this._coins.getCoinsAlias()[i]][this.currentCurrency]['PRICE']);
-                        this.coin.setMarketCap(this.coins.RAW[this._coins.getCoinsAlias()[i]][this.currentCurrency]['MKTCAP']);
-                        this.coin.setChangePercent24Hour(this.coins.RAW[this._coins.getCoinsAlias()[i]][this.currentCurrency]['CHANGEPCT24HOUR']);
-                        this.coinList.push(this.coin);
+                    this.coin.setAlias(this._coins.getCoinsAlias()[i]);
+                    this.coin.setCurrentPrice(this.coins.RAW[this._coins.getCoinsAlias()[i]][this.currentCurrency]['PRICE']);
+                    this.coin.setMarketCap(this.coins.RAW[this._coins.getCoinsAlias()[i]][this.currentCurrency]['MKTCAP']);
+                    this.coin.setChangePercent24Hour(this.coins.RAW[this._coins.getCoinsAlias()[i]][this.currentCurrency]['CHANGEPCT24HOUR']);
+                    this.coinList.push(this.coin);
                 }
-                this.coinList.sort((n1, n2) => {
-                    return n1 - n2;
-                })
+                this.coinList.sort((a, b) => b.getMarketCap() - a.getMarketCap());
                 this.setTimer();
                 console.log("loadovano");
                 $('.progress').fadeOut(500);

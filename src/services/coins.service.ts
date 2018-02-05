@@ -74,7 +74,6 @@ export class CoinService {
         'AUR',
         'ARDR',
         'BAT',
-        'BCH',
         'BRX',
         'BSD',
         'BTA',
