@@ -25,7 +25,6 @@ purple color palette:
 
 .chart-panel {
     width: 80%;
-    height: 640px;
     display: table;
     margin: 0 auto;
     padding: 10px;
@@ -106,7 +105,7 @@ purple color palette:
 }
 
 .btn-floating {
-    background: #4837935d;
+    background: rgba(72, 55, 147, 0.365);
 }
 
 .btn-floating i {
@@ -114,7 +113,7 @@ purple color palette:
 }
 
 .btn-floating:hover {
-    background: #48379396;
+    background: rgba(72, 55, 147, 0.588);
 }
 
 .icon i {

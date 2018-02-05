@@ -60,7 +60,6 @@ export class CoinService {
         'NEO',
         'EOS',
         'XEM',
-        'MIOTA',
         'XMR',
         'QTUM',
         'LSK',
@@ -74,7 +73,6 @@ export class CoinService {
         'ARDR',
         'AUR',
         'ARDR',
-        'BANX',
         'BAT',
         'BCH',
         'BRX',
@@ -129,6 +127,10 @@ export class CoinService {
 
     getCoinsNames() {
         return this.coinsList.toString();
+    }
+
+    getCoinsAlias() {
+        return this.coinsList;
     }
 
     getCoinsPriceHistory(alias: string, days: number) {

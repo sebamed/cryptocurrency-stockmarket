@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';
 import { RandomText } from '../services/random-text.service';
+import { Coin } from '../models/coin.model';
 
 declare var $: any;
 
@@ -15,7 +16,9 @@ declare var $: any;
 })
 export class CurrencyListComponent implements OnInit, OnDestroy {
 
-    coins: any;
+    coins;
+    coinList: any[] = [];
+    coin: Coin;
     objectKeys = Object.keys;
 
     coinsHistory: any[] = [];
@@ -64,12 +67,23 @@ export class CurrencyListComponent implements OnInit, OnDestroy {
     getCoinData() {
         this.subscriptionoData = this._coins.getCoins().subscribe(res => {
             this.coins = res;
-            console.log(this.coins.RAW);
         },
             error => {
                 console.log(error);
             },
             () => {
+                this.coinList = [];
+                for (let i = 0; i < this._coins.getCoinsAlias().length; i++) {
+                    this.coin = new Coin();
+                        this.coin.setAlias(this._coins.getCoinsAlias()[i]);
+                        this.coin.setCurrentPrice(this.coins.RAW[this._coins.getCoinsAlias()[i]][this.currentCurrency]['PRICE']);
+                        this.coin.setMarketCap(this.coins.RAW[this._coins.getCoinsAlias()[i]][this.currentCurrency]['MKTCAP']);
+                        this.coin.setChangePercent24Hour(this.coins.RAW[this._coins.getCoinsAlias()[i]][this.currentCurrency]['CHANGEPCT24HOUR']);
+                        this.coinList.push(this.coin);
+                }
+                this.coinList.sort((n1, n2) => {
+                    return n1 - n2;
+                })
                 this.setTimer();
                 console.log("loadovano");
                 $('.progress').fadeOut(500);
@@ -92,9 +106,5 @@ export class CurrencyListComponent implements OnInit, OnDestroy {
             this.getCoinData();
             this.refreshData(seconds);
         });
-    }
-
-    checkPercent(perc: number) {
-        return perc >= 0;
     }
 }

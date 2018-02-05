@@ -19,11 +19,11 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "../node_modules/materialize-css/dist/css/materialize.css",
-        "../node_modules/font-awesome/css/font-awesome.css",
-        "../node_modules/cryptocoins-icons/webfont/cryptocoins.css",
+        "styles.css",
         "../node_modules/cryptocoins-icons/webfont/cryptocoins-colors.css",
-        "styles.css"
+        "../node_modules/cryptocoins-icons/webfont/cryptocoins.css",
+        "../node_modules/font-awesome/css/font-awesome.css",
+        "../node_modules/materialize-css/dist/css/materialize.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",

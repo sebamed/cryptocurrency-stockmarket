@@ -9,7 +9,7 @@ Color palette:
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
 html {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif !important;
 }
 
 .btn {

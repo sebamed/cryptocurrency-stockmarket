@@ -210,13 +210,9 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
     }
 
     setColors() {
-        // pravljenje gradienta
-        let gradient = this.chart.nativeElement.getContext('2d').createLinearGradient(0, 0, 0, 450);
-        gradient.addColorStop(0, '#a89af065');
-        gradient.addColorStop(1, '#291a6c00');
         this.coinChartColors = [
             { // ljubicasta i bela
-                backgroundColor: gradient,
+                backgroundColor: '#342188',
                 borderColor: '#a99af0',
                 pointBackgroundColor: '#a99af0',
                 pointBorderColor: '#a99af0',
@@ -250,9 +246,9 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
     }
 
     setMyCoin(res: any) {
-        this.myCoin.alias = this.coinAlias;
-        this.myCoin.currentPrice = res.RAW[this.myCoin.alias][this._coins.getCurrentCurrency()]["PRICE"];
-        this.coinPrices[this.coinPrices.length - 1] = this.myCoin.currentPrice;
+        this.myCoin.setAlias(this.coinAlias);
+        this.myCoin.setCurrentPrice(res.RAW[this.myCoin.alias][this._coins.getCurrentCurrency()]["PRICE"]);
+        this.coinPrices[this.coinPrices.length - 1] = this.myCoin.getCurrentPrice();
         this.coinChartData = [
             { data: this.coinPrices }
         ];
@@ -312,7 +308,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
     setPriceArray() {
         for (var i = 0; i < this.coinData.length; i++) {
             if (i == this.coinData.length - 1) { // poslednji dodaje trenutnu cenu
-                this.coinPrices.push(this.myCoin.currentPrice);
+                this.coinPrices.push(this.myCoin.getCurrentPrice());
             }
             else {
                 this.coinPrices.push(this.coinData[i].open);
@@ -332,7 +328,7 @@ export class CoinInfoComponent implements OnInit, OnDestroy {
         for (let i = 0; i < chartButtons.length; i++) {
             chartButtons[i].classList.remove("active");
         }
-        event.srcElement.classList.add("active");
+        event.target.classList.add("active");
     }
 
     setDays(days: number, event: any) {

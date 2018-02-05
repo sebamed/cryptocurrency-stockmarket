@@ -29,32 +29,32 @@
 <!-- table content -->
 <div class="hidden-data" *ngIf="loaded">
     <div class="data">
-        <div id="list-row" *ngFor="let key of coins.RAW | ObjKeys; let i = index;" [routerLink]="['/coin', key]" [ngsReveal]="{ reset: true}">
+        <div id="list-row" *ngFor="let coin of coinList; let i = index;" [routerLink]="['/coin', coin.alias]" [ngsReveal]="{ reset: true}">
             <div class="wrapper list-row" ngDefaultControl [(ngModel)]="currentSymbol">
                 <div class="row-head row" ngDefaultControl [(ngModel)]="currentCurrency">
                     <div class="col s3 coin-name">
                         <div class="number">{{ i + 1 }}.</div>
                         <div class="icon">
-                            <i class="cc {{key}}"></i>
+                            <i class="cc {{ coin.alias }}"></i>
                         </div>
-                        <h5>{{ key }}</h5>
+                        <h5>{{ coin.alias }}</h5>
                     </div>
                     <div class="col s3 coin-price">
-                        <span class="currency">{{currentSymbol}}</span>
-                        <h5>{{ coins.RAW[key][currentCurrency]["PRICE"] | number:'1.2-4' }}</h5>
+                        <span class="currency">{{ currentSymbol }}</span>
+                        <h5>{{ coin.currentPrice | number:'1.2-4' }}</h5>
                     </div>
                     <div class="col s3 coin-price">
-                        <span class="currency">{{currentSymbol}}</span>
-                        <h5>{{ coins.RAW[key][currentCurrency]["MKTCAP"] | number:'1.2-4' }}</h5>
+                        <span class="currency">{{ currentSymbol }}</span>
+                        <h5>{{ coin.marketCap | number:'1.0-0' }}</h5>
                     </div>
                     <div class="col s3 coin-perc">
-                        <div class="plus" *ngIf="checkPercent(coins.RAW[key][currentCurrency]['CHANGEPCT24HOUR'])">
+                        <div class="plus" *ngIf="coin.changePercent24Hour >= 0">
                             <i class="fa fa-caret-up"></i>
-                            <h5>{{ coins.RAW[key][currentCurrency]["CHANGEPCT24HOUR"] | number:'1.2' }}%</h5>
+                            <h5>{{ coin.changePercent24Hour | number:'1.2' }}%</h5>
                         </div>
-                        <div class="minus" *ngIf="!checkPercent(coins.RAW[key][currentCurrency]['CHANGEPCT24HOUR'])">
+                        <div class="minus" *ngIf="coin.changePercent24Hour < 0">
                             <i class="fa fa-caret-down"></i>
-                            <h5>{{ coins.RAW[key][currentCurrency]["CHANGEPCT24HOUR"] | number:'1.2' }}%</h5>
+                            <h5>{{ coin.changePercent24Hour | number:'1.2' }}%</h5>
                         </div>
                     </div>
                 </div>

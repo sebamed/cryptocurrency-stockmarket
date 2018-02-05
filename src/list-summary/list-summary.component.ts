@@ -17,7 +17,7 @@ export class ListSummaryComponent implements OnInit, OnDestroy {
     totalMarketCap = 0;
     totalSupply = 0;
     total24hTradeVolume = 0;
-    totalCoins = 0;
+    totalCoins = this._coin.getCoinsAlias().length;
 
     timerRefresh: Observable<any>;
     subRefresh: Subscription;
@@ -76,7 +76,6 @@ export class ListSummaryComponent implements OnInit, OnDestroy {
             this.totalSupply += this.coins.RAW[coin][this.currenctCurrency]['SUPPLY'];
             this.total24hTradeVolume += this.coins.RAW[coin][this.currenctCurrency]['TOTALVOLUME24HTO'] -
                 this.coins.RAW[coin][this.currenctCurrency]['TOTALVOLUME24H'];
-            this.totalCoins++;
         }
     }
 
@@ -84,6 +83,5 @@ export class ListSummaryComponent implements OnInit, OnDestroy {
         this.totalMarketCap = 0;
         this.totalSupply = 0
         this.total24hTradeVolume = 0;
-        this.totalCoins = 0;
     }
 }

@@ -115,7 +115,7 @@ option {
 }
 
 .btn-floating {
-    background: #2ecc7010;
+    background: rgba(46, 204, 112, 0.063);
 }
 
 .btn-floating i {
@@ -123,7 +123,7 @@ option {
 }
 
 .btn-floating:hover {
-    background: #29b76496;
+    background: rgba(41, 183, 100, 0.588);
     color: #24a35a;
 }
 
