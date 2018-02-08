@@ -20,6 +20,7 @@ import { RandomText } from '../services/random-text.service';
 
 // pipes 
 import { KeysPipe } from '../pipes/keys.pipe';
+import { FilterPipe } from '../pipes/filter.pipe';
 
 // components
 import { AppComponent } from './app.component';
@@ -39,7 +40,8 @@ import { ListSummaryComponent } from '../list-summary/list-summary.component';
     FooterComponent,
     CoinInfoComponent,
     ListSummaryComponent,
-    KeysPipe
+    KeysPipe,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

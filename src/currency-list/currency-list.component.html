@@ -28,8 +28,17 @@
 
 <!-- table content -->
 <div class="hidden-data" *ngIf="loaded">
+    <div class="search">
+        <div class="container">
+            <div class="row search-bar">
+                <div class="input-field col s12">
+                    <input ngDefaultControl [(ngModel)]="searchText" id="search" type="search" class="validate" placeholder="search coin">
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="data">
-        <div id="list-row" *ngFor="let coin of coinList; let i = index;" [routerLink]="['/coin', coin.alias]" [ngsReveal]="{ reset: true}">
+        <div id="list-row" *ngFor="let coin of coinList | filter : searchText; let i = index;" [routerLink]="['/coin', coin.alias]" [ngsReveal]="{ reset: true}">
             <div class="wrapper list-row" ngDefaultControl [(ngModel)]="currentSymbol">
                 <div class="row-head row" ngDefaultControl [(ngModel)]="currentCurrency">
                     <div class="col s3 coin-name">

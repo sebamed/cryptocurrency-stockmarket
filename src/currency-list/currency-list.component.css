@@ -124,3 +124,26 @@
     clear: none;
 }
 
+.search {
+    background: #F6F9FA;
+    border-bottom: 1px solid #D6E2EB;
+    padding-top: 10px;
+}
+
+.search-bar {
+    padding: 0px 10%;
+    margin-bottom: 0 !important;
+}
+
+.input-field {
+    margin: 0;
+}
+
+input[type=search]:not(.browser-default) {
+    border-bottom-color: #D6E2EB;
+}
+
+input[type=search]:not(.browser-default):focus {
+    background: transparent;
+    border-bottom-color: #29b765;
+}
